@@ -6,7 +6,7 @@ public class Player {
     public String position;
     public String born;
 
-    //TODO promijeni born iz strinda u datum!
+    //TODO promijeni born iz stringa u datum!
     public Player(String club, String player, String position, String born) {
         this.club = club;
         this.player = player;

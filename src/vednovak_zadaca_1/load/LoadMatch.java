@@ -1,10 +1,10 @@
 package vednovak_zadaca_1.load;
 
 import vednovak_zadaca_1.StoredData;
-import vednovak_zadaca_1.data.Game;
+import vednovak_zadaca_1.data.Match;
 
-class LoadGame extends LoadData {
-    LoadGame(String fileName) {
+class LoadMatch extends LoadData {
+    LoadMatch(String fileName) {
         readFileData(fileName);
     }
 
@@ -12,10 +12,10 @@ class LoadGame extends LoadData {
     void storeFileData(String fileData) {
         String[] objectData = fileData.split(";");
         if (checkObjectData(objectData)) {
-            Game game = new Game(Integer.parseInt(objectData[0]),
+            Match match = new Match(Integer.parseInt(objectData[0]),
                     Integer.parseInt(objectData[1]), objectData[2], objectData[3], objectData[4]);
-            if (StoredData.games.contains(game)) System.out.println("ERROR: utakmica već postoji");
-            StoredData.games.add(game);
+            if (StoredData.matches.contains(match)) System.out.println("ERROR: utakmica već postoji");
+            StoredData.matches.add(match);
         }
     }
 

@@ -2,7 +2,7 @@ package vednovak_zadaca_1.data;
 
 public class Event {
     //required
-    private final int number;
+    private final int matchID;
     private final String minutes;
     private final String type;
 
@@ -12,7 +12,7 @@ public class Event {
     private final String substitute;
 
     private Event(EventBuilder builder) {
-        this.number = builder.number;
+        this.matchID = builder.matchID;
         this.minutes = builder.minutes;
         this.type = builder.type;
         this.club = builder.club;
@@ -20,8 +20,8 @@ public class Event {
         this.substitute = builder.substitute;
     }
 
-    public int getNumber() {
-        return number;
+    public int getMatchID() {
+        return matchID;
     }
 
     public String getMinutes() {
@@ -46,13 +46,13 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Broj: " + number + " Minute: " + minutes + " Tip: " + type
+        return "Broj: " + matchID + " Minute: " + minutes + " Tip: " + type
                 + " Klub: " + club + " Igrac: " + player + " Zamjena: " + substitute;
     }
 
     public static class EventBuilder {
         //required
-        private final int number;
+        private final int matchID;
         private final String minutes;
         private final String type;
 
@@ -61,8 +61,8 @@ public class Event {
         private String player;
         private String substitute;
 
-        public EventBuilder(int number, String minutes, String type) {
-            this.number = number;
+        public EventBuilder(int matchID, String minutes, String type) {
+            this.matchID = matchID;
             this.minutes = minutes;
             this.type = type;
         }

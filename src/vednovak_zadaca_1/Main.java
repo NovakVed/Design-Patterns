@@ -42,17 +42,14 @@ public class Main {
 
     private static String ProgramManual() {
         return String.format("%n" +
-                "--------------------------------------------------------------------------%n" +
+                "-------------------------------------------------------%n" +
                 "Upišite jednu od sljedećih komanda%n" +
-                "--------------------------------------------------------------------------%n" +
-                "T: Pregled ljestvice za sva odigrana kola u prvenstvu %n" +
-                "T [kolo]: Pregled ljestvice nakon određenog kola prvenstva %n" +
-                "S: Pregled ljestvice strijelaca za sva odigrana kola u prvenstvu %n" +
-                "S [kolo]: Pregled ljestvice strijelaca nakon određenog kola prvenstva %n" +
-                "K: Pregled ljestvice kartona po klubovima  za odigrana kola u prvenstvu %n" +
-                "K [kolo]: Pregled ljestvice kartona po klubovima nakon određenog kola prvenstva %n" +
-                "R [klub]: Pregled rezultata utakmica za klub za odigrana kola u prvenstvu %n" +
-                "R [klub] [kolo]: Pregled rezultata utakmica za klub nakon određenog kola prvenstva %n" +
-                "0: Zatvaranje programa %n");
+                "-------------------------------------------------------%n" +
+                "Pregled ljestvice kola:        T [kolo]%n" +
+                "Pregled ljestvica strijelaca:  S [kolo]%n" +
+                "Pregled ljestvice kartona:     K [kolo]%n" +
+                "Pregčed rezultata utakmica:    R [klub] [kolo]%n" +
+                "Zatvaranje programa:           0 %n" +
+                "-------------------------------------------------------%n");
     }
 }

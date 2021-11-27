@@ -7,25 +7,25 @@ public class TaskFactory {
         switch (task[0]) {
             case "T":
                 if (ValidateCommand(task)) return null;
-                if (task.length == 1) return new TaskGenerateLeagueLeaderboard();
-                return new TaskGenerateLeagueLeaderboard(task[1]);
+                if (task.length == 1) return new GenerateLeagueTable();
+                return new GenerateLeagueTable(task[1]);
             case "S":
                 if (ValidateCommand(task)) return null;
-                if (task.length == 1) return new TaskGenerateGoalLeaderboard();
-                return new TaskGenerateGoalLeaderboard(task[1]);
+                if (task.length == 1) return new GenerateGoalTable();
+                return new GenerateGoalTable(task[1]);
             case "K":
                 if (ValidateCommand(task)) return null;
-                if (task.length == 1) return new TaskGenerateCardLeaderboard();
-                return new TaskGenerateCardLeaderboard(task[1]);
+                if (task.length == 1) return new GenerateCardTable();
+                return new GenerateCardTable(task[1]);
             case "R":
-                //TODO
                 if (ValidateCommand(task)) return null;
-                break;
+                if (task.length == 2) return new GenerateMatchHistory(task[1]);
+                if (task.length == 3) return new GenerateMatchHistory(task[1], task[2]);
+                return null;
             default:
                 System.out.println("ERROR: Unesena je nepostojeća komanda");
                 return null;
         }
-        return null;
     }
 
     private Boolean ValidateCommand(String[] task) {

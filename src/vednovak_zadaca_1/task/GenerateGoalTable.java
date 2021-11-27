@@ -3,40 +3,39 @@ package vednovak_zadaca_1.task;
 import vednovak_zadaca_1.StoredData;
 import vednovak_zadaca_1.data.Club;
 import vednovak_zadaca_1.data.Event;
-import vednovak_zadaca_1.data.Game;
-import vednovak_zadaca_1.leaderboard.ScorerLeaderboard;
+import vednovak_zadaca_1.data.Match;
+import vednovak_zadaca_1.table.ScorerTable;
 
 import java.util.*;
 
-class TaskGenerateGoalLeaderboard implements Task {
+class GenerateGoalTable implements Task {
     private final int round;
-    public Map<String, ScorerLeaderboard> scorerLeaderboards = new HashMap<>();
+    public Map<String, ScorerTable> scorerLeaderboards = new HashMap<>();
 
-    TaskGenerateGoalLeaderboard(String round) {
+    GenerateGoalTable() {
+        this.round = StoredData.matches.get(StoredData.matches.size() - 1).matchID;
+        printTable();
+    }
+
+    GenerateGoalTable(String round) {
         this.round = Integer.parseInt(round);
         printTable();
     }
 
-    TaskGenerateGoalLeaderboard() {
-        this.round = StoredData.games.get(StoredData.games.size() - 1).number;
-        printTable();
-    }
-
     public void printTable() {
-        for (Game game : StoredData.games) {
-            if (game.matchesPlayed <= round) {
+        for (Match match : StoredData.matches) {
+            if (match.round <= round) {
                 int scoredGoals = 0;
                 String playerName = "";
                 String playerClub = "";
 
                 for (Event event : StoredData.events) {
-                    if (game.number == event.getNumber()) {
+                    if (match.matchID == event.getMatchID()) {
                         if (event.getClub() != null) {
                             if (event.getType().equals("1") || event.getType().equals("2")) {
                                 scoredGoals += 1;
                                 playerName = event.getPlayer();
                             }
-                            System.out.println(playerName + " zabio je: " + scoredGoals);
                         }
                     }
                     for (Club club : StoredData.clubs) {
@@ -48,8 +47,8 @@ class TaskGenerateGoalLeaderboard implements Task {
             }
         }
         if (!scorerLeaderboards.isEmpty()) { //SORTIRANJE PO BODOVIMA!!
-            Set<Map.Entry<String, ScorerLeaderboard>> entrySet = scorerLeaderboards.entrySet();
-            List<Map.Entry<String, ScorerLeaderboard>> list = new ArrayList<>(entrySet);
+            Set<Map.Entry<String, ScorerTable>> entrySet = scorerLeaderboards.entrySet();
+            List<Map.Entry<String, ScorerTable>> list = new ArrayList<>(entrySet);
             Collections.sort(list, ((o1, o2) -> o2.getValue().getGoals() - o1.getValue().getGoals()));
             System.out.printf("%40s %40s %20s%n",
                     "Igrac", "Klub", "Golovi");
@@ -62,17 +61,16 @@ class TaskGenerateGoalLeaderboard implements Task {
     }
 
     private void storeScorerLeaderboardList(String playerName, String playerClub, int scoredGoals) {
-        ScorerLeaderboard scorerLeaderboard;
+        ScorerTable scorerTable;
         if (!playerName.isEmpty() && !playerName.isBlank()
                 && !playerClub.isEmpty() && !playerClub.isBlank()
                 && scoredGoals != 0) {
             if (!scorerLeaderboards.containsKey(playerName)) {
-                scorerLeaderboard = new ScorerLeaderboard(playerName, playerClub, scoredGoals);
-                scorerLeaderboards.put(playerName, scorerLeaderboard);
+                scorerTable = new ScorerTable.Builder(playerName, playerClub, scoredGoals).build();
+                scorerLeaderboards.put(playerName, scorerTable);
             } else {
-                scorerLeaderboard = scorerLeaderboards.get(playerName);
-                scorerLeaderboard.setGoals(scorerLeaderboard.getGoals() + scoredGoals);
-                scorerLeaderboards.replace(playerName, scorerLeaderboard);
+                scorerTable = scorerLeaderboards.get(playerName);
+                scorerTable.goals = scorerTable.getGoals() + scoredGoals;
             }
         }
     }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class StoredData {
     public static List<Club> clubs = new ArrayList<>();
-    public static List<Game> games = new ArrayList<>();
+    public static List<Match> matches = new ArrayList<>();
     public static List<GameLineup> gameLineups = new ArrayList<>();
     public static List<Player> players = new ArrayList<>();
     public static List<Event> events = new ArrayList<>();

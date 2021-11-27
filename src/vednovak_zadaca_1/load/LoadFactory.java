@@ -10,7 +10,7 @@ public class LoadFactory {
             return new LoadPlayer(args[1]);
         }
         if (args[0].equals("-u")) {
-            return new LoadGame(args[1]);
+            return new LoadMatch(args[1]);
         }
         if (args[0].equals("-s")) {
             return new LoadGameLineup(args[1]);
