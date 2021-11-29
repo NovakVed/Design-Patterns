@@ -14,15 +14,17 @@ public class Main {
             LoadData(args);
             System.out.println(ProgramManual());
 
+            Scanner scan;
             String userInput;
             TaskFactory taskFactory = new TaskFactory();
             do {
                 System.out.print("Vaša komanda: ");
-                Scanner scan = new Scanner(System.in);
+                scan = new Scanner(System.in);
                 userInput = scan.nextLine();
                 String[] userInputValues = userInput.split(" ");
                 taskFactory.getTaskResult(userInputValues);
             } while (!userInput.equals("0"));
+            scan.close();
         }
         System.out.println("Program je završio sa svojim radom");
         System.exit(0);
@@ -33,10 +35,10 @@ public class Main {
         LoadFactory loadFactory = new LoadFactory();
 
         for (int i = 0; i < args.length; i += 2) {
-            String[] temp = new String[2];
-            temp[0] = args[i];
-            temp[1] = args[i + 1];
-            loadFactory.loadData(temp);
+            String[] command = new String[2];
+            command[0] = args[i];
+            command[1] = args[i + 1];
+            loadFactory.loadData(command);
         }
     }
 
