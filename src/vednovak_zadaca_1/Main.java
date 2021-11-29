@@ -35,10 +35,7 @@ public class Main {
         LoadFactory loadFactory = new LoadFactory();
 
         for (int i = 0; i < args.length; i += 2) {
-            String[] command = new String[2];
-            command[0] = args[i];
-            command[1] = args[i + 1];
-            loadFactory.loadData(command);
+            loadFactory.loadData(args[i], args[i + 1]);
         }
     }
 
