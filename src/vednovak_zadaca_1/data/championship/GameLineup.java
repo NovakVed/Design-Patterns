@@ -40,4 +40,14 @@ public class GameLineup implements MatchDetails {
     public String getPlayer() {
         return player;
     }
+
+    @Override
+    public String getMinutes() {
+        return null;
+    }
+
+    @Override
+    public String getSubstitute() {
+        return null;
+    }
 }

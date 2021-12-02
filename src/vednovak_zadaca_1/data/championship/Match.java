@@ -72,4 +72,14 @@ public class Match implements MatchDetails {
     public String getPlayer() {
         return null;
     }
+
+    @Override
+    public String getMinutes() {
+        return null;
+    }
+
+    @Override
+    public String getSubstitute() {
+        return null;
+    }
 }

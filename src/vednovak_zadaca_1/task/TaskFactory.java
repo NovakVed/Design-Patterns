@@ -1,6 +1,10 @@
 package vednovak_zadaca_1.task;
 
 import vednovak_zadaca_1.LoadFactory;
+import vednovak_zadaca_1.StoredData;
+import vednovak_zadaca_1.data.championship.Match;
+import vednovak_zadaca_1.data.championship.MatchDetails;
+import vednovak_zadaca_1.observer.*;
 
 public class TaskFactory {
     public void getTaskResult(String[] task) {
@@ -58,6 +62,36 @@ public class TaskFactory {
                 if (!task[1].isEmpty()) {
                     LoadFactory loadFactory = new LoadFactory();
                     loadFactory.loadData("-d", task[1]);
+                }
+                return;
+            case "D":
+                if (!task[1].isEmpty() && !task[2].isEmpty() && !task[3].isEmpty() && !task[4].isEmpty()) {
+                    Match match = null;
+                    int millis = Integer.parseInt(task[4]) * 1000;
+                    for (Match m : StoredData.matches.values()) {
+                        if (m.round == Integer.parseInt(task[1])
+                                && m.homeTeam.equals(task[2]) && m.awayTeam.equals(task[3])) {
+                            match = m;
+                        }
+                    }
+                    if (match != null) {
+                        SubjectSemaphore subjectSemaphore = new SubjectSemaphore();
+                        new RestGameObserver(subjectSemaphore);
+                        new TimeObserver(subjectSemaphore);
+                        new HomeTeamObserver(subjectSemaphore);
+                        new AwayTeamObserver(subjectSemaphore);
+
+                        for (MatchDetails event : match.matchEvents) {
+                            try {
+                                //TODO autogolovi
+                                Thread.sleep(millis);
+                                if (match.homeTeam.equals(event.getClubID())) subjectSemaphore.setEvent(true, event);
+                                else subjectSemaphore.setEvent(false, event);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
                 }
                 return;
             default:

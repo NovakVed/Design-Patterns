@@ -5,4 +5,6 @@ public interface MatchDetails {
     String getClubID();
     String getType();
     String getPlayer();
+    String getMinutes();
+    String getSubstitute();
 }

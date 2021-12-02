@@ -24,6 +24,7 @@ public class Event implements MatchDetails {
         return matchID;
     }
 
+    @Override
     public String getMinutes() {
         return minutes;
     }
@@ -43,6 +44,7 @@ public class Event implements MatchDetails {
         return player;
     }
 
+    @Override
     public String getSubstitute() {
         return substitute;
     }

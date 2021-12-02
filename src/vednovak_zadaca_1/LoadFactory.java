@@ -29,7 +29,6 @@ public class LoadFactory {
         if (dataType.equals("-d")) {
             storeEventDataToMatchComposite(loadFileFacade.loadEventData(fileName));
         }
-        System.out.println("ERROR: Unesena zastavica ne postoji!");
     }
 
     public void storeClubDataToClubComposite(List<Club> clubs) {
