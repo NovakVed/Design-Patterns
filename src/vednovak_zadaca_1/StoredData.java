@@ -1,18 +1,19 @@
 package vednovak_zadaca_1;
 
-import vednovak_zadaca_1.data.*;
+import vednovak_zadaca_1.data.championship.Match;
+import vednovak_zadaca_1.data.club.Club;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StoredData {
-    public static List<Club> clubs = new ArrayList<>();
-    public static List<Match> matches = new ArrayList<>();
-    public static List<GameLineup> gameLineups = new ArrayList<>();
-    public static List<Player> players = new ArrayList<>();
-    public static List<Event> events = new ArrayList<>();
+    public static Map<String, Club> clubs = new HashMap();
+    public static Map<Integer, Match> matches = new HashMap<>();
 
     private static volatile StoredData INSTANCE;
+
+    public StoredData() {
+    }
 
     public static StoredData getInstance() {
         if (INSTANCE == null)

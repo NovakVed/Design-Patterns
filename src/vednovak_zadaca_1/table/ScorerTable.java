@@ -33,18 +33,22 @@ public class ScorerTable {
             this.clubName = clubName;
             this.goals = goals;
         }
+
         public Builder setPlayerName(String playerName) {
             this.playerName = playerName;
             return this;
         }
+
         public Builder setClubName(String clubName) {
             this.clubName = clubName;
             return this;
         }
+
         public Builder setGoals(int goals) {
             this.goals = goals;
             return this;
         }
+
         public ScorerTable build() {
             return new ScorerTable(this);
         }

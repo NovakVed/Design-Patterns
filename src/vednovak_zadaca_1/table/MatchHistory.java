@@ -1,7 +1,5 @@
 package vednovak_zadaca_1.table;
 
-import java.util.Date;
-
 public class MatchHistory {
     public int round;
     public String date;

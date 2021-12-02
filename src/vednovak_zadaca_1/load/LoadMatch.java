@@ -1,11 +1,9 @@
 package vednovak_zadaca_1.load;
 
-import vednovak_zadaca_1.StoredData;
-import vednovak_zadaca_1.data.Match;
+import vednovak_zadaca_1.data.championship.Match;
 
-class LoadMatch extends LoadData {
-    LoadMatch(String fileName) {
-        readFileData(fileName);
+public class LoadMatch extends LoadData {
+    public LoadMatch() {
     }
 
     @Override
@@ -14,8 +12,9 @@ class LoadMatch extends LoadData {
         if (checkObjectData(objectData)) {
             Match match = new Match(Integer.parseInt(objectData[0]),
                     Integer.parseInt(objectData[1]), objectData[2], objectData[3], objectData[4]);
-            if (StoredData.matches.contains(match)) System.out.println("ERROR: utakmica već postoji");
-            StoredData.matches.add(match);
+            if (StoredFileObjects.matches.contains(match))
+                System.out.println("ERROR: utakmica već postoji");
+            StoredFileObjects.matches.add(match);
         }
     }
 

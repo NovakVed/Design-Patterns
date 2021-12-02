@@ -1,19 +1,20 @@
 package vednovak_zadaca_1.task;
 
 import vednovak_zadaca_1.StoredData;
-import vednovak_zadaca_1.data.Club;
-import vednovak_zadaca_1.data.Event;
-import vednovak_zadaca_1.data.Match;
+import vednovak_zadaca_1.data.championship.Match;
+import vednovak_zadaca_1.data.championship.MatchDetails;
+import vednovak_zadaca_1.data.club.Club;
 import vednovak_zadaca_1.table.LeagueTable;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-class GenerateLeagueTable implements Task {
+class GenerateLeagueTable implements Table {
     private final int round;
     public Map<String, LeagueTable> leagueLeaderboards = new HashMap<>();
 
     GenerateLeagueTable() {
-        this.round = StoredData.matches.get(StoredData.matches.size() - 1).matchID;
+        this.round = StoredData.matches.size();
         printTable();
     }
 
@@ -23,7 +24,7 @@ class GenerateLeagueTable implements Task {
     }
 
     public void printTable() {
-        for (Match match : StoredData.matches) {
+        for (Match match : StoredData.matches.values()) {
             if (match.round <= round) {
                 String teamWon = "";
                 String teamLost = "";
@@ -32,19 +33,17 @@ class GenerateLeagueTable implements Task {
 
                 int scoredGoalsHomeTeam = 0;
                 int scoredGoalsAwayTeam = 0;
-                for (Event event : StoredData.events) {
-                    if (match.matchID == event.getMatchID()) {
-                        if (event.getClub() != null) {
-                            if (event.getClub().equals(match.homeTeam)) {
-                                if (event.getType().equals("1")) scoredGoalsHomeTeam += 1;
-                                if (event.getType().equals("2")) scoredGoalsHomeTeam += 1;
-                                if (event.getType().equals("3")) scoredGoalsAwayTeam += 1;
-                            }
-                            if (event.getClub().equals(match.awayTeam)) {
-                                if (event.getType().equals("1")) scoredGoalsAwayTeam += 1;
-                                if (event.getType().equals("2")) scoredGoalsAwayTeam += 1;
-                                if (event.getType().equals("3")) scoredGoalsHomeTeam += 1;
-                            }
+                for (MatchDetails matchDetails : match.matchEvents) {
+                    if (matchDetails.getClubID() != null) {
+                        if (matchDetails.getClubID().equals(match.homeTeam)) {
+                            if (matchDetails.getType().equals("1")) scoredGoalsHomeTeam += 1;
+                            if (matchDetails.getType().equals("2")) scoredGoalsHomeTeam += 1;
+                            if (matchDetails.getType().equals("3")) scoredGoalsAwayTeam += 1;
+                        }
+                        if (matchDetails.getClubID().equals(match.awayTeam)) {
+                            if (matchDetails.getType().equals("1")) scoredGoalsAwayTeam += 1;
+                            if (matchDetails.getType().equals("2")) scoredGoalsAwayTeam += 1;
+                            if (matchDetails.getType().equals("3")) scoredGoalsHomeTeam += 1;
                         }
                     }
                 }
@@ -61,44 +60,47 @@ class GenerateLeagueTable implements Task {
                     scoredGoalsLostTeam = scoredGoalsHomeTeam;
                 }
                 String teamWonFullName = "";
+                String teamWonCoachName = "";
                 String teamLostFullName = "";
+                String teamLostCoachName = "";
                 String home = "";
+                String homeCoach = "";
                 String away = "";
-                for (Club club : StoredData.clubs) {
-                    if (club.club.equals(teamWon)) teamWonFullName = club.name;
-                    if (club.club.equals(teamLost)) teamLostFullName = club.name;
-                    if (club.club.equals(match.homeTeam)) home = club.name;
-                    if (club.club.equals(match.awayTeam)) away = club.name;
+                String awayCoach = "";
+                for (Club club : StoredData.clubs.values()) {
+                    if (club.clubID.equals(teamWon)) {
+                        teamWonFullName = club.name;
+                        teamWonCoachName = club.coach;
+                    }
+                    if (club.clubID.equals(teamLost)) {
+                        teamLostFullName = club.name;
+                        teamLostCoachName = club.coach;
+                    }
+                    if (club.clubID.equals(match.homeTeam)) {
+                        home = club.name;
+                        homeCoach = club.coach;
+                    }
+                    if (club.clubID.equals(match.awayTeam)) {
+                        away = club.name;
+                        awayCoach = club.coach;
+                    }
                 }
                 if (scoredGoalsHomeTeam == scoredGoalsAwayTeam) {
-                    drawGame(match.round, home, away, scoredGoalsHomeTeam, scoredGoalsAwayTeam);
+                    drawGame(match.round, home, homeCoach, away, awayCoach, scoredGoalsHomeTeam, scoredGoalsAwayTeam);
                 }
 
-                wonGame(match.round, teamWonFullName, scoredGoalsWonTeam, scoredGoalsLostTeam);
-                lostGame(match.round, teamLostFullName, scoredGoalsLostTeam, scoredGoalsWonTeam);
+                wonGame(match.round, teamWonFullName, teamWonCoachName, scoredGoalsWonTeam, scoredGoalsLostTeam);
+                lostGame(match.round, teamLostFullName, teamLostCoachName, scoredGoalsLostTeam, scoredGoalsWonTeam);
             }
-        }
-        if (!leagueLeaderboards.isEmpty()) { //SORTIRANJE PO BODOVIMA!!
-            Set<Map.Entry<String, LeagueTable>> entrySet = leagueLeaderboards.entrySet();
-            List<Map.Entry<String, LeagueTable>> list = new ArrayList<>(entrySet);
-            Collections.sort(list, ((o1, o2) -> o2.getValue().getPoints() - o1.getValue().getPoints()));
-            System.out.printf("%20s %6s %6s %6s %6s %6s %6s %6s %10s%n",
-                    "Klub", "Kolo", "DO", "NE", "IZ", "ZA", "PG", "Razlika", "Bodovi");
-
-            list.forEach(k ->
-                    System.out.printf("%20s %6s %6s %6s %6s %6s %6s %6s %10s%n",
-                            k.getValue().getClub(), k.getValue().getMatchesPlayed(),
-                            k.getValue().getWon(), k.getValue().getDrawn(), k.getValue().getLost(),
-                            k.getValue().getGoalsFor(), k.getValue().getGoalsAgainst(),
-                            k.getValue().getGoalsDifference(), k.getValue().getPoints()));
         }
     }
 
-    private void wonGame(int matchesPlayed, String wonTeam, int scoredGoalsWonTeam, int scoredGoalsLostTeam) {
+    private void wonGame(int matchesPlayed, String wonTeam, String coach, int scoredGoalsWonTeam, int scoredGoalsLostTeam) {
         if (!wonTeam.isEmpty() && !wonTeam.isBlank()) {
             if (!leagueLeaderboards.containsKey(wonTeam)) {
                 LeagueTable leagueTable = new LeagueTable.Builder()
                         .setClub(wonTeam)
+                        .setCoach(coach)
                         .setMatchesPlayed(matchesPlayed)
                         .setGoalsFor(scoredGoalsWonTeam)
                         .setGoalsAgainst(scoredGoalsLostTeam)
@@ -121,11 +123,12 @@ class GenerateLeagueTable implements Task {
         }
     }
 
-    private void lostGame(int matchesPlayed, String lostTeam, int scoredGoalsLostTeam, int scoredGoalsWonTeam) {
+    private void lostGame(int matchesPlayed, String lostTeam, String coach, int scoredGoalsLostTeam, int scoredGoalsWonTeam) {
         if (!lostTeam.isEmpty() && !lostTeam.isBlank()) {
             if (!leagueLeaderboards.containsKey(lostTeam)) {
                 LeagueTable leagueTable = new LeagueTable.Builder()
                         .setClub(lostTeam)
+                        .setCoach(coach)
                         .setMatchesPlayed(matchesPlayed)
                         .setGoalsFor(scoredGoalsLostTeam)
                         .setGoalsAgainst(scoredGoalsWonTeam)
@@ -147,18 +150,19 @@ class GenerateLeagueTable implements Task {
         }
     }
 
-    private void drawGame(int matchesPlayed, String homeTeam, String awayTeam, int scoredHomeTeam,
-                          int scoredAwayTeam) {
-        existingDrawGame(matchesPlayed, homeTeam, scoredHomeTeam, scoredAwayTeam);
-        existingDrawGame(matchesPlayed, awayTeam, scoredAwayTeam, scoredHomeTeam);
+    private void drawGame(int matchesPlayed, String homeTeam, String homeCoach, String awayTeam,
+                          String awayCoach, int scoredHomeTeam, int scoredAwayTeam) {
+        existingDrawGame(matchesPlayed, homeTeam, homeCoach, scoredHomeTeam, scoredAwayTeam);
+        existingDrawGame(matchesPlayed, awayTeam, awayCoach, scoredAwayTeam, scoredHomeTeam);
     }
 
-    private void existingDrawGame(int matchesPlayed, String team, int scoredHomeTeam,
+    private void existingDrawGame(int matchesPlayed, String team, String coach, int scoredHomeTeam,
                                   int scoredAwayTeam) {
         if (!team.isEmpty() && !team.isBlank()) {
             if (!leagueLeaderboards.containsKey(team)) {
                 LeagueTable leagueTable = new LeagueTable.Builder()
                         .setClub(team)
+                        .setCoach(coach)
                         .setMatchesPlayed(matchesPlayed)
                         .setGoalsFor(scoredHomeTeam)
                         .setGoalsAgainst(scoredAwayTeam)
@@ -179,5 +183,10 @@ class GenerateLeagueTable implements Task {
             club.goalsDifference = club.getGoalsDifference() + scoredHomeTeam - scoredAwayTeam;
             club.points = club.getPoints() + 1;
         }
+    }
+
+    @Override
+    public void accept(TableVisitor tableVisitor) {
+        tableVisitor.visit(this);
     }
 }

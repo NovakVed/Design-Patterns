@@ -1,13 +1,13 @@
-package vednovak_zadaca_1.data;
+package vednovak_zadaca_1.data.championship;
 
-public class Event {
+public class Event implements MatchDetails {
     //required
     private final int matchID;
     private final String minutes;
     private final String type;
 
     //optional
-    private final String club;
+    private final String clubID;
     private final String player;
     private final String substitute;
 
@@ -15,7 +15,7 @@ public class Event {
         this.matchID = builder.matchID;
         this.minutes = builder.minutes;
         this.type = builder.type;
-        this.club = builder.club;
+        this.clubID = builder.clubID;
         this.player = builder.player;
         this.substitute = builder.substitute;
     }
@@ -28,14 +28,17 @@ public class Event {
         return minutes;
     }
 
+    @Override
     public String getType() {
         return type;
     }
 
-    public String getClub() {
-        return club;
+    @Override
+    public String getClubID() {
+        return clubID;
     }
 
+    @Override
     public String getPlayer() {
         return player;
     }
@@ -46,8 +49,13 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Broj: " + matchID + " Minute: " + minutes + " Tip: " + type
-                + " Klub: " + club + " Igrac: " + player + " Zamjena: " + substitute;
+        return "utakmicaID: " + matchID + " Minute: " + minutes + " Tip: " + type
+                + " Klub: " + clubID + " Igrac: " + player + " Zamjena: " + substitute;
+    }
+
+    @Override
+    public void showMatchDetails() {
+        System.out.println(this);
     }
 
     public static class EventBuilder {
@@ -57,7 +65,7 @@ public class Event {
         private final String type;
 
         //optional
-        private String club;
+        private String clubID;
         private String player;
         private String substitute;
 
@@ -67,8 +75,8 @@ public class Event {
             this.type = type;
         }
 
-        public EventBuilder setClub(String club) {
-            this.club = club;
+        public EventBuilder setClubID(String clubID) {
+            this.clubID = clubID;
             return this;
         }
 

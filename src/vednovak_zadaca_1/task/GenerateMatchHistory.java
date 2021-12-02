@@ -1,22 +1,23 @@
 package vednovak_zadaca_1.task;
 
 import vednovak_zadaca_1.StoredData;
-import vednovak_zadaca_1.data.Club;
-import vednovak_zadaca_1.data.Event;
-import vednovak_zadaca_1.data.Match;
+import vednovak_zadaca_1.data.championship.Match;
+import vednovak_zadaca_1.data.championship.MatchDetails;
+import vednovak_zadaca_1.data.club.Club;
+import vednovak_zadaca_1.load.StoredFileObjects;
 import vednovak_zadaca_1.table.MatchHistory;
 
 import java.util.HashMap;
 import java.util.Map;
 
-class GenerateMatchHistory implements Task {
+class GenerateMatchHistory implements Table {
     private final String club;
     private final int round;
     public Map<Integer, MatchHistory> matchHistoryHashMap = new HashMap<>();
 
     GenerateMatchHistory(String club) {
         this.club = club;
-        round = StoredData.matches.get(StoredData.matches.size() - 1).round;
+        round = StoredData.matches.size();
         printTable();
     }
 
@@ -27,18 +28,16 @@ class GenerateMatchHistory implements Task {
     }
 
     public void printTable() {
-        for (Match match : StoredData.matches) {
+        for (Match match : StoredData.matches.values()) {
             if (match.homeTeam.equals(club) || match.awayTeam.equals(club)) {
                 if (match.round <= round) {
                     int goalsFor = 0;
                     int goalsAgainst = 0;
 
-                    for (Event event : StoredData.events) {
-                        if (event.getClub() != null) {
-                            if (match.matchID == event.getMatchID()) {
-                                if (event.getClub().equals(match.homeTeam)) goalsFor += 1;
-                                if (event.getClub().equals(match.awayTeam)) goalsAgainst += 1;
-                            }
+                    for (MatchDetails matchDetails : match.matchEvents) {
+                        if (matchDetails.getClubID() != null) {
+                            if (matchDetails.getClubID().equals(match.homeTeam)) goalsFor += 1;
+                            if (matchDetails.getClubID().equals(match.awayTeam)) goalsAgainst += 1;
                         }
                     }
                     storeMatchHistoryList(getClubName(match.homeTeam), getClubName(match.awayTeam),
@@ -46,17 +45,11 @@ class GenerateMatchHistory implements Task {
                 }
             }
         }
-        System.out.printf("%5s %25s %25s %15s %20s%n",
-                "Kolo", "Domaćin", "Gost", "Rezultat", "Datum");
-        matchHistoryHashMap.forEach((k, v) ->
-                System.out.printf("%5s %25s %25s %15s %20s%n",
-                        v.getRound(), v.getHomeTeam(), v.getAwayTeam(), v.getGameScore(), v.getDate())
-        );
     }
 
     private String getClubName(String clubCode) {
-        for (Club club : StoredData.clubs) {
-            if (club.club.equals(clubCode)) return club.name;
+        for (Club club : StoredFileObjects.clubs) {
+            if (club.clubID.equals(clubCode)) return club.name;
         }
         return null;
     }
@@ -71,5 +64,10 @@ class GenerateMatchHistory implements Task {
                 .setDate(start)
                 .build();
         matchHistoryHashMap.put(round, matchHistory);
+    }
+
+    @Override
+    public void accept(TableVisitor tableVisitor) {
+        tableVisitor.visit(this);
     }
 }

@@ -1,11 +1,9 @@
 package vednovak_zadaca_1.load;
 
-import vednovak_zadaca_1.StoredData;
-import vednovak_zadaca_1.data.GameLineup;
+import vednovak_zadaca_1.data.championship.GameLineup;
 
-class LoadGameLineup extends LoadData {
-    LoadGameLineup(String fileName) {
-        readFileData(fileName);
+public class LoadGameLineup extends LoadData {
+    public LoadGameLineup() {
     }
 
     @Override
@@ -14,9 +12,9 @@ class LoadGameLineup extends LoadData {
         if (checkObjectData(objectData)) {
             GameLineup gameLineup = new GameLineup(Integer.parseInt(objectData[0]),
                     objectData[1], objectData[2], objectData[3], objectData[4]);
-            if (StoredData.gameLineups.contains(gameLineup))
+            if (StoredFileObjects.gameLineups.contains(gameLineup))
                 System.out.println("ERROR: sastav utakmice već postoji");
-            StoredData.gameLineups.add(gameLineup);
+            StoredFileObjects.gameLineups.add(gameLineup);
         }
     }
 

@@ -2,6 +2,7 @@ package vednovak_zadaca_1.table;
 
 public class LeagueTable {
     public String club;
+    public String coach;
     public int matchesPlayed;
     public int won;
     public int drawn;
@@ -13,6 +14,7 @@ public class LeagueTable {
 
     public LeagueTable(Builder builder) {
         this.club = builder.club;
+        this.coach = builder.coach;
         this.matchesPlayed = builder.matchesPlayed;
         this.won = builder.won;
         this.drawn = builder.drawn;
@@ -25,6 +27,10 @@ public class LeagueTable {
 
     public String getClub() {
         return club;
+    }
+
+    public String getCoach() {
+        return coach;
     }
 
     public int getMatchesPlayed() {
@@ -61,6 +67,7 @@ public class LeagueTable {
 
     public static class Builder {
         private String club;
+        private String coach;
         private int matchesPlayed;
         private int won;
         private int drawn;
@@ -72,6 +79,11 @@ public class LeagueTable {
 
         public Builder setClub(String club) {
             this.club = club;
+            return this;
+        }
+
+        public Builder setCoach(String coach) {
+            this.coach = coach;
             return this;
         }
 
