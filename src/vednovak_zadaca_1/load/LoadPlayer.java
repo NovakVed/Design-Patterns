@@ -2,8 +2,8 @@ package vednovak_zadaca_1.load;
 
 import vednovak_zadaca_1.data.club.Player;
 
-public class LoadPlayer extends LoadData {
-    public LoadPlayer() {
+class LoadPlayer extends LoadData {
+    LoadPlayer() {
     }
 
     @Override
@@ -11,9 +11,9 @@ public class LoadPlayer extends LoadData {
         String[] objectData = fileData.split(";");
         if (checkObjectData(objectData)) {
             Player player = new Player(objectData[0], objectData[1], objectData[2], objectData[3]);
-            if (StoredFileObjects.players.contains(player))
+            if (LoadFileStoredData.players.contains(player))
                 System.out.println("ERROR: igrač već postoji");
-            StoredFileObjects.players.add(player);
+            LoadFileStoredData.players.add(player);
         }
     }
 

@@ -4,7 +4,6 @@ import vednovak_zadaca_1.StoredData;
 import vednovak_zadaca_1.data.championship.Match;
 import vednovak_zadaca_1.data.championship.MatchDetails;
 import vednovak_zadaca_1.data.club.Club;
-import vednovak_zadaca_1.load.StoredFileObjects;
 import vednovak_zadaca_1.table.ScorerTable;
 
 import java.util.HashMap;
@@ -38,7 +37,7 @@ class GenerateGoalTable implements Table {
                             playerName = matchDetails.getPlayer();
                         }
                     }
-                    for (Club club : StoredFileObjects.clubs) {
+                    for (Club club : StoredData.clubs.values()) {
                         if (club.clubID.equals(matchDetails.getClubID())) playerClub = club.name;
                     }
                     storeScorerLeaderboardList(playerName, playerClub, scoredGoals);

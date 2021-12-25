@@ -2,8 +2,8 @@ package vednovak_zadaca_1.load;
 
 import vednovak_zadaca_1.data.club.Club;
 
-public class LoadClub extends LoadData {
-    public LoadClub() {
+class LoadClub extends LoadData {
+    LoadClub() {
     }
 
     @Override
@@ -11,9 +11,9 @@ public class LoadClub extends LoadData {
         String[] objectData = fileData.split(";");
         if (checkObjectData(objectData)) {
             Club club = new Club(objectData[0], objectData[1], objectData[2]);
-            if (StoredFileObjects.clubs.contains(club))
+            if (LoadFileStoredData.clubs.contains(club))
                 System.out.println("ERROR: klub je već postoji");
-            StoredFileObjects.clubs.add(club);
+            LoadFileStoredData.clubs.add(club);
         }
     }
 

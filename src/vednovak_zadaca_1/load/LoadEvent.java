@@ -2,8 +2,8 @@ package vednovak_zadaca_1.load;
 
 import vednovak_zadaca_1.data.championship.Event;
 
-public class LoadEvent extends LoadData {
-    public LoadEvent() {
+class LoadEvent extends LoadData {
+    LoadEvent() {
     }
 
     @Override
@@ -21,7 +21,7 @@ public class LoadEvent extends LoadData {
             if (eventType == 20)
                 event = loadEventSubstitution(objectData);
             if (event != null)
-                StoredFileObjects.events.add(event);
+                LoadFileStoredData.events.add(event);
         }
     }
 
