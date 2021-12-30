@@ -1,6 +1,6 @@
 package vednovak_zadaca_1.data.club;
 
-public class Coach extends Person implements Member {
+public class Coach extends Person {
     public Coach(String clubID, String name) {
         super(clubID, name);
     }
@@ -11,7 +11,7 @@ public class Coach extends Person implements Member {
     }
 
     @Override
-    public void showMemberDetails() {
+    public void showChampionshipMemberDetails() {
         System.out.println(this);
     }
 }

@@ -1,6 +1,6 @@
 package vednovak_zadaca_1.data.club;
 
-public abstract class Person implements Member {
+public abstract class Person extends ChampionshipMember {
     public String clubID;
     public String name;
 

@@ -1,6 +1,6 @@
 package vednovak_zadaca_1.data.club;
 
-public class Player extends Person implements Member {
+public class Player extends Person {
     public String position;
     public String born;
 
@@ -16,7 +16,7 @@ public class Player extends Person implements Member {
     }
 
     @Override
-    public void showMemberDetails() {
+    public void showChampionshipMemberDetails() {
         System.out.println(this);
     }
 }
