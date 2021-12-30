@@ -12,7 +12,7 @@ public class Player extends Person implements Member {
 
     @Override
     public String toString() {
-        return "Klub: " + clubID + ", igrača: " + name + ", pozicija: " + position + ", rođen: " + born;
+        return "Klub: " + clubID + ", igrač: " + name + ", pozicija: " + position + ", rođen: " + born;
     }
 
     @Override

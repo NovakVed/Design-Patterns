@@ -8,13 +8,12 @@ public class Main {
 
     public static void main(String[] args) {
         LoadData(args);
-        System.out.println(ProgramManual());
 
         Scanner scan;
         String userInput;
         TaskFactory taskFactory = new TaskFactory();
         do {
-            System.out.print("Vaša komanda: ");
+            System.out.println(ProgramManual());
             scan = new Scanner(System.in);
             userInput = scan.nextLine();
             String[] userInputValues = userInput.split(" ");
@@ -47,6 +46,7 @@ public class Main {
                 "Dodavanje podataka za sastave:     NS [datoteka]%n" +
                 "Dodavanje podataka za događaje:    ND [datoteka]%n" +
                 "Zatvaranje programa:               0%n" +
-                "----------------------------------------------------------------%n");
+                "----------------------------------------------------------------%n" +
+                "Vaša komanda: ");
     }
 }

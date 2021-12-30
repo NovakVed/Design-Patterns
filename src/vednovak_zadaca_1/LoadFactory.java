@@ -5,7 +5,6 @@ import vednovak_zadaca_1.data.championship.GameLineup;
 import vednovak_zadaca_1.data.championship.Match;
 import vednovak_zadaca_1.data.club.Club;
 import vednovak_zadaca_1.data.club.Coach;
-import vednovak_zadaca_1.data.club.Member;
 import vednovak_zadaca_1.data.club.Player;
 import vednovak_zadaca_1.load.LoadFileFacade;
 
@@ -13,7 +12,7 @@ import java.util.List;
 
 public class LoadFactory {
     public void loadData(String dataType, String fileName) {
-        if (dataType == null || dataType.isEmpty()) return;
+        if (dataType == null || dataType.isEmpty()) System.out.println("ERROR ne postoji klasa");
         LoadFileFacade loadFileFacade = new LoadFileFacade();
         if (dataType.equals("-k")) {
             storeClubDataToClubComposite(loadFileFacade.loadClubData(fileName));
@@ -34,8 +33,7 @@ public class LoadFactory {
 
     public void storeClubDataToClubComposite(List<Club> clubs) {
         for (Club club : clubs) {
-            Member member = new Coach(club.clubID, club.coach);
-            club.add(member);
+            club.add(new Coach(club.clubID, club.coach));
             StoredData.clubs.put(club.clubID, club);
         }
     }
