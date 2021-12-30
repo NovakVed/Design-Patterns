@@ -6,7 +6,6 @@ class LoadGameLineup extends LoadData {
     LoadGameLineup() {
     }
 
-    @Override
     void storeFileData(String fileData) {
         String[] objectData = fileData.split(";");
         if (checkObjectData(objectData)) {
@@ -18,7 +17,7 @@ class LoadGameLineup extends LoadData {
         }
     }
 
-    @Override
+    //TODO ubaci provjere
     boolean checkObjectData(String[] object) {
         if (object.length != 5) {
             System.out.printf("ERROR: sastav utakmice ID: %10s nema potpune podataka%n", object[0]);

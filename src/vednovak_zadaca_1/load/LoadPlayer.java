@@ -6,7 +6,6 @@ class LoadPlayer extends LoadData {
     LoadPlayer() {
     }
 
-    @Override
     void storeFileData(String fileData) {
         String[] objectData = fileData.split(";");
         if (checkObjectData(objectData)) {
@@ -17,10 +16,10 @@ class LoadPlayer extends LoadData {
         }
     }
 
-    @Override
+    //TODO ubaci provjere igraca
     boolean checkObjectData(String[] object) {
         if (object.length != 4) {
-            System.out.printf("ERROR: igrac: %10s nema podataka%n", object[1]);
+            System.out.printf("ERROR: igrač %10s nema podataka%n", object[1]);
             return false;
         }
         return true;

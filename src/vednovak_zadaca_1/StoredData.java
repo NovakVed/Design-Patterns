@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StoredData {
-    public static Map<String, Club> clubs = new HashMap();
+    public static Map<String, Club> clubs = new HashMap<>();
     public static Map<Integer, Match> matches = new HashMap<>();
 
     private static volatile StoredData INSTANCE;
@@ -16,11 +16,9 @@ public class StoredData {
     }
 
     public static StoredData getInstance() {
-        if (INSTANCE == null)
-            synchronized (StoredData.class) {
-                if (INSTANCE == null)
-                    INSTANCE = new StoredData();
-            }
+        if (INSTANCE == null) synchronized (StoredData.class) {
+            if (INSTANCE == null) INSTANCE = new StoredData();
+        }
         return INSTANCE;
     }
 }

@@ -6,7 +6,6 @@ class LoadEvent extends LoadData {
     LoadEvent() {
     }
 
-    @Override
     void storeFileData(String fileData) {
         Event event = null;
         String[] objectData = fileData.split(";");
@@ -53,7 +52,7 @@ class LoadEvent extends LoadData {
                 .build();
     }
 
-    @Override
+    //TODO ubaci provjere
     boolean checkObjectData(String[] object) {
         if (object.length < 3) {
             System.out.println("ERROR: događaj nema potpune podataka");

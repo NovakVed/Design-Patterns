@@ -19,7 +19,11 @@ abstract class LoadData {
         }
     }
 
-    abstract void storeFileData(String fileData);
+    void storeFileData(String fileData) {
+        throw new UnsupportedOperationException();
+    }
 
-    abstract boolean checkObjectData(String[] object);
+    boolean checkObjectData(String[] object) {
+        throw new UnsupportedOperationException();
+    }
 }

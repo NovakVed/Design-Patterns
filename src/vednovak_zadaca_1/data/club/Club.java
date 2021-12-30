@@ -8,7 +8,7 @@ public class Club extends ChampionshipMember {
     public String name;
     public String coach;
 
-    public List<ChampionshipMember> members = new ArrayList<>();
+    public List<ChampionshipMember> championshipMembers = new ArrayList<>();
 
     public Club(String clubID, String name, String coach) {
         this.clubID = clubID;
@@ -17,16 +17,16 @@ public class Club extends ChampionshipMember {
     }
 
     public void add(ChampionshipMember member) {
-        this.members.add(member);
+        this.championshipMembers.add(member);
     }
 
     public void remove(ChampionshipMember member) {
-        this.members.remove(member);
+        this.championshipMembers.remove(member);
     }
 
     public void clear() {
         System.out.println("Klub: " + name + ", briše sve članove kluba");
-        this.members.clear();
+        this.championshipMembers.clear();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Club extends ChampionshipMember {
     }
 
     public void showChampionshipMemberDetails() {
-        for (ChampionshipMember member : members) {
+        for (ChampionshipMember member : championshipMembers) {
             member.showChampionshipMemberDetails();
         }
     }

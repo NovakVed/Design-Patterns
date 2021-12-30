@@ -6,7 +6,6 @@ class LoadClub extends LoadData {
     LoadClub() {
     }
 
-    @Override
     void storeFileData(String fileData) {
         String[] objectData = fileData.split(";");
         if (checkObjectData(objectData)) {
@@ -17,7 +16,7 @@ class LoadClub extends LoadData {
         }
     }
 
-    @Override
+    //TODO ubaci provjere
     boolean checkObjectData(String[] object) {
         if (object.length != 3) {
             System.out.printf("ERROR: klub %10s nema potpune podataka%n", object[1]);

@@ -1,28 +1,28 @@
 ﻿Klub;Igrač;Pozicije;Rođen
-R;Prince Obeng Ampem;V;13.04.1998.
-R;Filip Braut;B;05.06.2002.
-R;Denis Bušnja;V;14.04.2000.
-R;Josip Drmić;N;08.08.1992.
-R;Niko Galešić;B;26.03.2001.
-R;Nino Galović;B;06.07.1992.
-R;Adam Gnezda Čerin;V;16.07.1999.
-R;Abass Issah;N;26.09.1998.
-R;Roko Jurišić;B;28.09.2001.
+R;Prince Obeng Ampem;V, B, N;13.04.1998.
+R;Nino Galović;V, LDV, LV, LOV, LN;06.07.1992.
+R;#1 test previse pozicija;B, V, LDV, LV, LOV, LN;28.09.2001.
+R;#2 ponavljajuce pozicije;B, B, B;29.01.1996.
+R;#3 nema pozicija;;09.01.2001.
+R;#4 nema datum rodenja;N;
+;#5 nema kluba;B;08.05.1997.
+#6 nema imena;;V;26.02.1999.
+;;;
+;;;
 R;Bernard Karrica;LV;07.01.2001.
-R;Anton Krešić;B;29.01.1996.
+R;Denis Bušnja;V;14.04.2000.
 R;Nediljko Labrović;G;10.10.1999.
 R;Ivan Lepinjica;V;09.07.1999.
-R;Adrian Liber;V;09.01.2001.
+R;Josip Drmić;N;08.08.1992.
 R;Mikhail Merkulov;B;26.01.1994.
 R;Robert Mudražija;V;05.05.1997.
 R;Robert Murić;V;12.03.1996.
-R;Jorge Leonardo Obregon Rojas;N;29.03.1997.
+R;Niko Galešić;B;26.03.2001.
 R;Domagoj Pavičić;V;09.03.1994.
-R;Joao Rodrigo Pereira Escoval;B;08.05.1997.
+R;Adam Gnezda Čerin;V;16.07.1999.
 R;Andrej Prskalo;G;01.05.2987.
-R;Lindon Selahi;V;26.02.1999.
+R;Abass Issah;N;26.09.1998.
 R;Hrvoje Smolčić;B;17.08.2000.
-R;Mato Stanić;V;11.05.1998.
 R;Ivan Tomečak;B;07.10.1989.
 R;Darko Velkovski;B;21.06.1995.
 R;Haris Vučkić;N;21.08.1992.

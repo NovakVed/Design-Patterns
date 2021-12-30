@@ -12,23 +12,25 @@ import java.util.List;
 
 public class LoadFactory {
     public void loadData(String dataType, String fileName) {
-        if (dataType == null || dataType.isEmpty()) System.out.println("ERROR ne postoji klasa");
-        LoadFileFacade loadFileFacade = new LoadFileFacade();
-        if (dataType.equals("-k")) {
-            storeClubDataToClubComposite(loadFileFacade.loadClubData(fileName));
-        }
-        if (dataType.equals("-i")) {
-            storePlayerDataToClubComposite(loadFileFacade.loadPlayerData(fileName));
-        }
-        if (dataType.equals("-u")) {
-            storeMatchDataToMatchComposite(loadFileFacade.loadMatchData(fileName));
-        }
-        if (dataType.equals("-s")) {
-            storeGameLineupsDataToMatchComposite(loadFileFacade.loadGameLineupData(fileName));
-        }
-        if (dataType.equals("-d")) {
-            storeEventDataToMatchComposite(loadFileFacade.loadEventData(fileName));
-        }
+        if (dataType == null || dataType.isEmpty()) System.out.println("ERROR: ne postoji klasa");
+        if (dataType != null && dataType.matches("-[kiusd]")) {
+            LoadFileFacade loadFileFacade = new LoadFileFacade();
+            if (dataType.equals("-k")) {
+                storeClubDataToClubComposite(loadFileFacade.loadClubData(fileName));
+            }
+            if (dataType.equals("-i")) {
+                storePlayerDataToClubComposite(loadFileFacade.loadPlayerData(fileName));
+            }
+            if (dataType.equals("-u")) {
+                storeMatchDataToMatchComposite(loadFileFacade.loadMatchData(fileName));
+            }
+            if (dataType.equals("-s")) {
+                storeGameLineupsDataToMatchComposite(loadFileFacade.loadGameLineupData(fileName));
+            }
+            if (dataType.equals("-d")) {
+                storeEventDataToMatchComposite(loadFileFacade.loadEventData(fileName));
+            }
+        } else System.out.println("ERROR: nepravilno uneseni argumenti");
     }
 
     public void storeClubDataToClubComposite(List<Club> clubs) {
