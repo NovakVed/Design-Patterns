@@ -1,7 +1,8 @@
 ﻿Klub;Naziv;Trener
-O;Osijek;Nenad Bjelica
-R;Rijeka;Goran Tomić
-D;Dinamo;Damir Krznar
+;#1 nema ID;Nenad Bjelica
+#2 nema naziv;;Goran Tomić
+D;#3 nema trenera;
+;;
 G;Gorica;Krunoslav Rendulić
 H;Hajduk;Jens Gustafsson
 HD;Hrvatski Dragovoljac;Davor Mladina

@@ -1,10 +1,10 @@
 ﻿Broj;Min;Vrsta;Klub;Igrač;Zamjena
 1;0;0;;;
-1;12;10;G;Dieye Matar;
-1;19;10;G;Nasiru Moro;
-1;20;2;R;Robert Murić;
-1;53;20;R;Robert Mudražija;Denis Bušnja
-1;55;1;R;Ivan Lepinjica;
+;12;10;G;Dieye Matar;
+1;;10;G;Nasiru Moro;
+1;20;;R;Robert Murić;
+1;53;20;;Robert Mudražija;Denis Bušnja
+1;55;1;R;;
 1;65;20;G;Josip Mitrović;Matija Dvorneković
 1;65;20;G;Josip Drmić;Toni Fruk
 1;76;20;G;Martin Šroler;Jorge Leonardo Obregon Rojas

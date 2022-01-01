@@ -28,9 +28,13 @@ public class Main {
         StoredData.getInstance();
         LoadFactory loadFactory = new LoadFactory();
 
-        for (int i = 0; i < args.length; i += 2) {
-            loadFactory.loadData(args[i], args[i + 1]);
-        }
+        if (args.length % 2 == 0) {
+            for (int i = 0; i < args.length; i += 2) {
+                if (!args[i + 1].matches("^-"))
+                    loadFactory.loadData(args[i], args[i + 1]);
+                else System.out.println("ERROR: nepravilno uneseni argumenti");
+            }
+        } else System.out.println("ERROR: nepravilno uneseni argumenti");
     }
 
     private static String ProgramManual() {

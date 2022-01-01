@@ -6,7 +6,6 @@ class LoadMatch extends LoadData {
     LoadMatch() {
     }
 
-    @Override
     void storeFileData(String fileData) {
         String[] objectData = fileData.split(";");
         if (checkObjectData(objectData)) {
@@ -18,10 +17,38 @@ class LoadMatch extends LoadData {
         }
     }
 
-    @Override
     boolean checkObjectData(String[] object) {
+        return checkMatchData(object);
+    }
+
+    boolean checkMatchData(String[] object) {
         if (object.length != 5) {
-            System.out.printf("ERROR: utakmica ID: %10s nema potpune podataka%n", object[0]);
+            if (object.length == 4 && (!object[0].isBlank() || !object[1].isBlank()
+                    || !object[2].isBlank() || !object[3].isBlank())) {
+                System.out.printf("ERROR: utakmica broj %s nema vrijeme početka%n", object[0]);
+            } else {
+                System.out.printf("ERROR: utakmica nema potpune podataka%n");
+            }
+            return false;
+        }
+        if (object[0].isBlank() || object[0].isEmpty()) {
+            System.out.printf("ERROR: utakmica nema utakmicaID%n");
+            return false;
+        }
+        if (object[1].isBlank() || object[1].isEmpty()) {
+            System.out.printf("ERROR: utakmica %s broj kola%n", object[0]);
+            return false;
+        }
+        if (object[2].isBlank() || object[2].isEmpty()) {
+            System.out.printf("ERROR: utakmica %s nema domaćina%n", object[0]);
+            return false;
+        }
+        if (object[3].isBlank() || object[3].isEmpty()) {
+            System.out.printf("ERROR: utakmica %s nema gosta%n", object[0]);
+            return false;
+        }
+        if (object[4].isBlank() || object[4].isEmpty()) {
+            System.out.printf("ERROR: utakmica %s nema vrijeme početka%n", object[0]);
             return false;
         }
         return true;
