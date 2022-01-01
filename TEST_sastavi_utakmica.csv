@@ -1,10 +1,10 @@
 ﻿Broj;Klub;Vrsta;Igrač;Pozicija
-1;R;S;Nediljko Labrović;G
-1;R;S;Nino Galović;B
-1;R;S;Robert Murić;V
-1;R;S;Adrian Liber;V
-1;R;S;Prince Obeng Ampem;V
-1;R;S;Andrija Vukčević;B
+;R;S;Nediljko Labrović;G
+1;;S;Nino Galović;B
+1;R;;Robert Murić;V
+1;R;S;;V
+1;R;S;Prince Obeng Ampem;
+;;;;
 1;R;S;Ivan Lepinjica;V
 1;R;S;Josip Drmić;N
 1;R;S;Robert Mudražija;V

@@ -17,7 +17,6 @@ class LoadMatch extends LoadData {
         }
     }
 
-    //TODO ubaci provjere
     boolean checkObjectData(String[] object) {
         return checkMatchData(object);
     }

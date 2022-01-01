@@ -17,10 +17,40 @@ class LoadGameLineup extends LoadData {
         }
     }
 
-    //TODO ubaci provjere
     boolean checkObjectData(String[] object) {
+        return checkGameLineupData(object);
+    }
+
+    boolean checkGameLineupData(String[] object) {
         if (object.length != 5) {
-            System.out.printf("ERROR: sastav utakmice ID: %10s nema potpune podataka%n", object[0]);
+            if (object.length == 4 && (!object[0].isBlank() || !object[1].isBlank()
+                    || !object[2].isBlank() || !object[3].isBlank())) {
+                System.out.printf("ERROR: sastavi_utakmice, utakmicaID %s igrač %s nema poziciju%n",
+                        object[0], object[3]);
+            } else {
+                System.out.printf("ERROR: sastavi_utakmice nema potpune podataka%n");
+            }
+            return false;
+        }
+        if (object[0].isBlank() || object[0].isEmpty()) {
+            System.out.printf("ERROR: sastavi_utakmice nema utakmicaID%n");
+            return false;
+        }
+        if (object[1].isBlank() || object[1].isEmpty()) {
+            System.out.printf("ERROR: sastavi_utakmice, utakmicaID %s naziv kluba%n", object[0]);
+            return false;
+        }
+        if (object[2].isBlank() || object[2].isEmpty()) {
+            System.out.printf("ERROR: sastavi_utakmice, utakmicaID %s nema vrstu%n", object[0]);
+            return false;
+        }
+        if (object[3].isBlank() || object[3].isEmpty()) {
+            System.out.printf("ERROR: sastavi_utakmice, utakmica %s nema igrača%n", object[0]);
+            return false;
+        }
+        if (object[4].isBlank() || object[4].isEmpty()) {
+            System.out.printf("ERROR: sastavi_utakmice, utakmicaID %s igrač %s nema poziciju%n",
+                    object[0], object[3]);
             return false;
         }
         return true;
