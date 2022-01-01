@@ -17,10 +17,10 @@ class LoadPlayer extends LoadData {
     }
 
     boolean checkObjectData(String[] object) {
-        return checkIfPlayerHasAllInfo(object);
+        return checkPlayerData(object);
     }
 
-    boolean checkIfPlayerHasAllInfo(String[] object) {
+    boolean checkPlayerData(String[] object) {
         if (object.length != 4) {
             if (object.length == 3
                     && (!object[0].isBlank() || !object[1].isBlank() || !object[2].isBlank())) {
