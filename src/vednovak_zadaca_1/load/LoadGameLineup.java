@@ -25,10 +25,10 @@ class LoadGameLineup extends LoadData {
         if (object.length != 5) {
             if (object.length == 4 && (!object[0].isBlank() || !object[1].isBlank()
                     || !object[2].isBlank() || !object[3].isBlank())) {
-                System.out.printf("ERROR: sastavi_utakmice, utakmicaID %s igrač %s nema poziciju%n",
-                        object[0], object[3]);
+                System.out.print("ERROR: sastavi_utakmice nema poziciju: ");
+                printData(object);
             } else {
-                System.out.printf("ERROR: sastavi_utakmice nema potpune podataka%n");
+                System.out.printf("ERROR: sastavi_utakmice nema sve podatake%n");
             }
             return false;
         }
@@ -42,7 +42,8 @@ class LoadGameLineup extends LoadData {
 
     boolean checkIfGameLineupIdExists(String[] object) {
         if (object[0].isBlank() || object[0].isEmpty()) {
-            System.out.printf("ERROR: sastavi_utakmice nema utakmicaID%n");
+            System.out.print("ERROR: sastavi_utakmice nema utakmicaID: ");
+            printData(object);
             return false;
         }
         return true;
@@ -50,7 +51,8 @@ class LoadGameLineup extends LoadData {
 
     private boolean checkIfClubNameExists(String[] object) {
         if (object[1].isBlank() || object[1].isEmpty()) {
-            System.out.printf("ERROR: sastavi_utakmice, utakmicaID %s nema naziv kluba%n", object[0]);
+            System.out.print("ERROR: sastavi_utakmice nema naziv kluba: ");
+            printData(object);
             return false;
         }
         return true;
@@ -58,7 +60,8 @@ class LoadGameLineup extends LoadData {
 
     private boolean checkIfTypeExists(String[] object) {
         if (object[2].isBlank() || object[2].isEmpty()) {
-            System.out.printf("ERROR: sastavi_utakmice, utakmicaID %s nema vrstu%n", object[0]);
+            System.out.print("ERROR: sastavi_utakmice nema vrstu: ");
+            printData(object);
             return false;
         }
         return true;
@@ -66,7 +69,8 @@ class LoadGameLineup extends LoadData {
 
     private boolean checkIfPlayerExists(String[] object) {
         if (object[3].isBlank() || object[3].isEmpty()) {
-            System.out.printf("ERROR: sastavi_utakmice, utakmica %s nema igrača%n", object[0]);
+            System.out.print("ERROR: sastavi_utakmice nema igrača: ");
+            printData(object);
             return false;
         }
         return true;
@@ -74,8 +78,8 @@ class LoadGameLineup extends LoadData {
 
     private boolean checkIfPlayerPositionExists(String[] object) {
         if (object[4].isBlank() || object[4].isEmpty()) {
-            System.out.printf("ERROR: sastavi_utakmice, utakmicaID %s igrač %s nema poziciju%n",
-                    object[0], object[3]);
+            System.out.print("ERROR: sastavi_utakmice nema poziciju: ");
+            printData(object);
             return false;
         }
         return true;

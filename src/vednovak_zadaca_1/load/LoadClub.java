@@ -23,9 +23,10 @@ class LoadClub extends LoadData {
     boolean checkPlayerData(String[] object) {
         if (object.length != 3) {
             if (object.length == 2 && (!object[0].isBlank() || !object[1].isBlank())) {
-                System.out.printf("ERROR: klub %10s nema trenera%n", object[1]);
+                System.out.print("ERROR: klub nema trenera: ");
+                printData(object);
             } else {
-                System.out.printf("ERROR: klub nema sve podatake%n");
+                System.out.printf("ERROR: klub nema podatake%n");
             }
             return false;
         }
@@ -37,7 +38,8 @@ class LoadClub extends LoadData {
 
     boolean checkIfClubIdExists (String[] object) {
         if (object[0].isBlank() || object[0].isEmpty()) {
-            System.out.printf("ERROR: klub %10s nema klubID%n", object[1]);
+            System.out.print("ERROR: klub nema klubID: ");
+            printData(object);
             return false;
         }
         return true;
@@ -45,7 +47,8 @@ class LoadClub extends LoadData {
 
     boolean checkIfClubNameExists(String[] object) {
         if (object[1].isBlank() || object[1].isEmpty()) {
-            System.out.printf("ERROR: klub nema naziv kluba%n");
+            System.out.print("ERROR: klub nema naziv kluba: ");
+            printData(object);
             return false;
         }
         return true;
@@ -53,7 +56,8 @@ class LoadClub extends LoadData {
 
     boolean checkIfCoachExists(String[] object) {
         if (object[2].isBlank() || object[2].isEmpty()) {
-            System.out.printf("ERROR: klub %10s nema trenera%n", object[1]);
+            System.out.print("ERROR: klub nema trenera: ");
+            printData(object);
             return false;
         }
         return true;

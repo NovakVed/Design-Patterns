@@ -20,15 +20,19 @@ class LoadPlayer extends LoadData {
         return checkPlayerData(object);
     }
 
-    //TODO popravi (ako je samo dva atributa da se ispise kojeg igraca nema i zasto) i ubaci vise pozicija
+    //TODO ubaci vise pozicija
     boolean checkPlayerData(String[] object) {
         if (object.length != 4) {
             if (object.length == 3
                     && (!object[0].isBlank() || !object[1].isBlank() || !object[2].isBlank())) {
-                System.out.printf("ERROR: igrač %10s nema datum rođenja%n", object[1]);
+                System.out.print("ERROR: igrač nema datum rođenja: ");
+                printData(object);
             } else if (object.length == 0) System.out.printf("ERROR: igrač nema sve podatake%n");
-            else if (checkPlayerName(object)) System.out.printf("ERROR: igrač %10s nema sve podatken", object[1]);
-            else System.out.printf("ERROR: igrač nema sve podatake%n");
+            else if (checkPlayerName(object)) {
+                System.out.print("ERROR: igrač nema sve podatkene: ");
+                printData(object);
+            }
+            else System.out.printf("ERROR: igrač nema podatake%n");
             return false;
         }
         if (!checkPlayerClub(object)) return false;
@@ -40,7 +44,8 @@ class LoadPlayer extends LoadData {
 
     boolean checkPlayerClub(String[] object) {
         if (object[0].isBlank() || object[0].isEmpty()) {
-            System.out.printf("ERROR: igrač %10s nema klub%n", object[1]);
+            System.out.print("ERROR: igrač nema klub: ");
+            printData(object);
             return false;
         }
         return true;
@@ -48,7 +53,8 @@ class LoadPlayer extends LoadData {
 
     boolean checkPlayerName(String[] object) {
         if (object[1].isBlank() || object[1].isEmpty()) {
-            System.out.printf("ERROR: igrač nema imena%n");
+            System.out.print("ERROR: igrač nema imena: ");
+            printData(object);
             return false;
         }
         return true;
@@ -56,7 +62,8 @@ class LoadPlayer extends LoadData {
 
     boolean checkPlayerPosition(String[] object) {
         if (object[2].isBlank() || object[2].isEmpty()) {
-            System.out.printf("ERROR: igrač %10s nema poziciju%n", object[1]);
+            System.out.print("ERROR: igrač nema poziciju: ");
+            printData(object);
             return false;
         }
         return true;
@@ -64,7 +71,8 @@ class LoadPlayer extends LoadData {
 
     boolean checkPlayerBirthDate(String[] object) {
         if (object[3].isBlank() || object[3].isEmpty()) {
-            System.out.printf("ERROR: igrač %10s nema datum rođenja%n", object[1]);
+            System.out.print("ERROR: igrač nema datum rođenja: ");
+            printData(object);
             return false;
         }
         return true;

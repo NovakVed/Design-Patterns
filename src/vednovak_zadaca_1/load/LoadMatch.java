@@ -25,9 +25,10 @@ class LoadMatch extends LoadData {
         if (object.length != 5) {
             if (object.length == 4 && (!object[0].isBlank() || !object[1].isBlank()
                     || !object[2].isBlank() || !object[3].isBlank())) {
-                System.out.printf("ERROR: utakmica broj %s nema vrijeme početka%n", object[0]);
+                System.out.print("ERROR: utakmica nema vrijeme početka: ");
+                printData(object);
             } else {
-                System.out.printf("ERROR: utakmica nema potpune podataka%n");
+                System.out.printf("ERROR: utakmica nema sve podatake%n");
             }
             return false;
         }
@@ -41,7 +42,8 @@ class LoadMatch extends LoadData {
 
     private boolean checkIfMatchIdExists(String[] object) {
         if (object[0].isBlank() || object[0].isEmpty()) {
-            System.out.printf("ERROR: utakmica nema utakmicaID%n");
+            System.out.print("ERROR: utakmica nema utakmicaID: ");
+            printData(object);
             return false;
         }
         return true;
@@ -49,7 +51,8 @@ class LoadMatch extends LoadData {
 
     private boolean checkIfMatchRoundExists(String[] object) {
         if (object[1].isBlank() || object[1].isEmpty()) {
-            System.out.printf("ERROR: utakmica %s broj kola%n", object[0]);
+            System.out.print("ERROR: utakmica nema broj kola: ");
+            printData(object);
             return false;
         }
         return true;
@@ -57,7 +60,8 @@ class LoadMatch extends LoadData {
 
     private boolean checkIfHomeTeamExists(String[] object) {
         if (object[2].isBlank() || object[2].isEmpty()) {
-            System.out.printf("ERROR: utakmica %s nema domaćina%n", object[0]);
+            System.out.print("ERROR: utakmica nema domaćina: ");
+            printData(object);
             return false;
         }
         return true;
@@ -65,7 +69,8 @@ class LoadMatch extends LoadData {
 
     private boolean checkIfAwayTeamExists(String[] object) {
         if (object[3].isBlank() || object[3].isEmpty()) {
-            System.out.printf("ERROR: utakmica %s nema gosta%n", object[0]);
+            System.out.print("ERROR: utakmica nema gosta: ");
+            printData(object);
             return false;
         }
         return true;
@@ -73,7 +78,8 @@ class LoadMatch extends LoadData {
 
     private boolean checkIfMatchStartExists(String[] object) {
         if (object[4].isBlank() || object[4].isEmpty()) {
-            System.out.printf("ERROR: utakmica %s nema vrijeme početka%n", object[0]);
+            System.out.print("ERROR: utakmica nema vrijeme početka: ");
+            printData(object);
             return false;
         }
         return true;

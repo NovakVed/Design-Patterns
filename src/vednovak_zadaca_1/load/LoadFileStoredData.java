@@ -18,7 +18,8 @@ class LoadFileStoredData {
 
     private static volatile LoadFileStoredData INSTANCE;
 
-    public LoadFileStoredData() {}
+    public LoadFileStoredData() {
+    }
 
     public static LoadFileStoredData getInstance() {
         if (INSTANCE == null)

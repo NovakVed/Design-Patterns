@@ -62,7 +62,11 @@ class LoadEvent extends LoadData {
 
     boolean checkEventData(String[] object) {
         if (object.length < 3) {
-            System.out.println("ERROR: događaj nema potpune podataka");
+            if (object.length == 0) System.out.printf("ERROR: događaj nema podataka%n");
+            else {
+                System.out.print("ERROR: događaj nema sve podataka: ");
+                printData(object);
+            }
             return false;
         }
         if (!checkIfGameIdExists(object)) return false;
@@ -73,7 +77,8 @@ class LoadEvent extends LoadData {
 
     boolean checkIfGameIdExists(String[] object) {
         if (object[0].isBlank() || object[0].isEmpty()) {
-            System.out.println("ERROR: događaji nemaju utakmicaID");
+            System.out.print("ERROR: događaj: nema utakmicaID: ");
+            printData(object);
             return false;
         }
         return true;
@@ -81,7 +86,8 @@ class LoadEvent extends LoadData {
 
     boolean checkIfMinuteExists(String[] object) {
         if (object[1].isBlank() || object[1].isEmpty()) {
-            System.out.println("ERROR: događaji nemaju minutu");
+            System.out.print("ERROR: događaj: nema minutu: ");
+            printData(object);
             return false;
         }
         return true;
@@ -89,7 +95,8 @@ class LoadEvent extends LoadData {
 
     boolean checkIfTypeExists(String[] object) {
         if (object[2].isBlank() || object[2].isEmpty()) {
-            System.out.println("ERROR: događaji nemaju vrstu");
+            System.out.print("ERROR: događaj: nema vrstu: ");
+            printData(object);
             return false;
         }
         return true;
@@ -97,7 +104,8 @@ class LoadEvent extends LoadData {
 
     boolean checkIfClubExists(String[] object) {
         if (object[3].isBlank() || object[3].isEmpty()) {
-            System.out.println("ERROR: događaj nema klub");
+            System.out.print("ERROR: događaj: nema klub: ");
+            printData(object);
             return false;
         }
         return true;
@@ -105,7 +113,8 @@ class LoadEvent extends LoadData {
 
     boolean checkIfPlayerExists(String[] object) {
         if (object.length < 5 || object[4].isBlank() || object[4].isEmpty()) {
-            System.out.println("ERROR: događaj nema igrača");
+            System.out.print("ERROR: događaj: nema igrača");
+            printData(object);
             return false;
         }
         return true;
@@ -113,7 +122,8 @@ class LoadEvent extends LoadData {
 
     boolean checkIfPlayerSubstitutionExists(String[] object) {
         if (object.length != 6 || object[5].isBlank() || object[5].isEmpty()) {
-            System.out.println("ERROR: događaj nema zamjenskog igrača");
+            System.out.print("ERROR: događaj: nema zamjenskog igrača: ");
+            printData(object);
             return false;
         }
         return true;

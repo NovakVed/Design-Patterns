@@ -26,4 +26,13 @@ abstract class LoadData {
     boolean checkObjectData(String[] object) {
         throw new UnsupportedOperationException();
     }
+
+    void printData(String[] object) {
+        if (object.length != 0) {
+            for (String o:object) {
+                System.out.printf("%s ", o);
+            }
+            System.out.printf("%n");
+        }
+    }
 }
