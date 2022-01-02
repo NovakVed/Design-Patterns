@@ -31,22 +31,47 @@ class LoadMatch extends LoadData {
             }
             return false;
         }
+        if (!checkIfMatchIdExists(object)) return false;
+        if (!checkIfMatchRoundExists(object)) return false;
+        if (!checkIfHomeTeamExists(object)) return false;
+        if (!checkIfAwayTeamExists(object)) return false;
+        if (!checkIfMatchStartExists(object)) return false;
+        return true;
+    }
+
+    private boolean checkIfMatchIdExists(String[] object) {
         if (object[0].isBlank() || object[0].isEmpty()) {
             System.out.printf("ERROR: utakmica nema utakmicaID%n");
             return false;
         }
+        return true;
+    }
+
+    private boolean checkIfMatchRoundExists(String[] object) {
         if (object[1].isBlank() || object[1].isEmpty()) {
             System.out.printf("ERROR: utakmica %s broj kola%n", object[0]);
             return false;
         }
+        return true;
+    }
+
+    private boolean checkIfHomeTeamExists(String[] object) {
         if (object[2].isBlank() || object[2].isEmpty()) {
             System.out.printf("ERROR: utakmica %s nema domaćina%n", object[0]);
             return false;
         }
+        return true;
+    }
+
+    private boolean checkIfAwayTeamExists(String[] object) {
         if (object[3].isBlank() || object[3].isEmpty()) {
             System.out.printf("ERROR: utakmica %s nema gosta%n", object[0]);
             return false;
         }
+        return true;
+    }
+
+    private boolean checkIfMatchStartExists(String[] object) {
         if (object[4].isBlank() || object[4].isEmpty()) {
             System.out.printf("ERROR: utakmica %s nema vrijeme početka%n", object[0]);
             return false;

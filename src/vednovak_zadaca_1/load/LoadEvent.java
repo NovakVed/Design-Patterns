@@ -65,14 +65,29 @@ class LoadEvent extends LoadData {
             System.out.println("ERROR: događaj nema potpune podataka");
             return false;
         }
+        if (!checkIfGameIdExists(object)) return false;
+        if (!checkIfMinuteExists(object)) return false;
+        if (!checkIfTypeExists(object)) return false;
+        return true;
+    }
+
+    boolean checkIfGameIdExists(String[] object) {
         if (object[0].isBlank() || object[0].isEmpty()) {
             System.out.println("ERROR: događaji nemaju utakmicaID");
             return false;
         }
+        return true;
+    }
+
+    boolean checkIfMinuteExists(String[] object) {
         if (object[1].isBlank() || object[1].isEmpty()) {
             System.out.println("ERROR: događaji nemaju minutu");
             return false;
         }
+        return true;
+    }
+
+    boolean checkIfTypeExists(String[] object) {
         if (object[2].isBlank() || object[2].isEmpty()) {
             System.out.println("ERROR: događaji nemaju vrstu");
             return false;

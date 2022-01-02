@@ -29,14 +29,29 @@ class LoadClub extends LoadData {
             }
             return false;
         }
+        if (!checkIfClubIdExists(object)) return false;
+        if (!checkIfClubNameExists(object)) return false;
+        if (!checkIfCoachExists(object)) return false;
+        return true;
+    }
+
+    boolean checkIfClubIdExists (String[] object) {
         if (object[0].isBlank() || object[0].isEmpty()) {
             System.out.printf("ERROR: klub %10s nema klubID%n", object[1]);
             return false;
         }
+        return true;
+    }
+
+    boolean checkIfClubNameExists(String[] object) {
         if (object[1].isBlank() || object[1].isEmpty()) {
             System.out.printf("ERROR: klub nema naziv kluba%n");
             return false;
         }
+        return true;
+    }
+
+    boolean checkIfCoachExists(String[] object) {
         if (object[2].isBlank() || object[2].isEmpty()) {
             System.out.printf("ERROR: klub %10s nema trenera%n", object[1]);
             return false;

@@ -32,22 +32,47 @@ class LoadGameLineup extends LoadData {
             }
             return false;
         }
+        if (!checkIfGameLineupIdExists(object)) return false;
+        if (!checkIfClubNameExists(object)) return false;
+        if (!checkIfTypeExists(object)) return false;
+        if (!checkIfPlayerExists(object)) return false;
+        if (!checkIfPlayerPositionExists(object)) return false;
+        return true;
+    }
+
+    boolean checkIfGameLineupIdExists(String[] object) {
         if (object[0].isBlank() || object[0].isEmpty()) {
             System.out.printf("ERROR: sastavi_utakmice nema utakmicaID%n");
             return false;
         }
+        return true;
+    }
+
+    private boolean checkIfClubNameExists(String[] object) {
         if (object[1].isBlank() || object[1].isEmpty()) {
-            System.out.printf("ERROR: sastavi_utakmice, utakmicaID %s naziv kluba%n", object[0]);
+            System.out.printf("ERROR: sastavi_utakmice, utakmicaID %s nema naziv kluba%n", object[0]);
             return false;
         }
+        return true;
+    }
+
+    private boolean checkIfTypeExists(String[] object) {
         if (object[2].isBlank() || object[2].isEmpty()) {
             System.out.printf("ERROR: sastavi_utakmice, utakmicaID %s nema vrstu%n", object[0]);
             return false;
         }
+        return true;
+    }
+
+    private boolean checkIfPlayerExists(String[] object) {
         if (object[3].isBlank() || object[3].isEmpty()) {
             System.out.printf("ERROR: sastavi_utakmice, utakmica %s nema igrača%n", object[0]);
             return false;
         }
+        return true;
+    }
+
+    private boolean checkIfPlayerPositionExists(String[] object) {
         if (object[4].isBlank() || object[4].isEmpty()) {
             System.out.printf("ERROR: sastavi_utakmice, utakmicaID %s igrač %s nema poziciju%n",
                     object[0], object[3]);
