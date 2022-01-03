@@ -29,13 +29,25 @@ public class Club extends ChampionshipMember {
         this.championshipMembers.clear();
     }
 
+    public String getClubID() {
+        return this.clubID;
+    }
+
+    public String getClubName() {
+        return this.name;
+    }
+
+    public String getCoachName() {
+        return this.coach;
+    }
+
     @Override
     public String toString() {
         return "Klub: " + clubID + " naziv: " + name + " trener: " + coach;
     }
 
     public ChampionshipMember getChampionshipMember(int componentID) {
-        return super.getChampionshipMember(componentID);
+        return championshipMembers.get(componentID);
     }
 
     public void showChampionshipMemberDetails() {

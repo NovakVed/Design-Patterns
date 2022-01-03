@@ -10,8 +10,7 @@ public class Coach extends Person {
         return "Klub: " + clubID + ", trener: " + name;
     }
 
-    @Override
     public void showChampionshipMemberDetails() {
-        System.out.println(this);
+        System.out.println(name);
     }
 }

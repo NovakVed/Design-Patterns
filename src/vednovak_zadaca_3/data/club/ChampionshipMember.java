@@ -20,4 +20,12 @@ public abstract class ChampionshipMember {
     public void showChampionshipMemberDetails() {
         throw new UnsupportedOperationException();
     }
+
+    public String getPersonClubID() {
+        throw new UnsupportedOperationException();
+    }
+
+    public String getPersonName() {
+        throw new UnsupportedOperationException();
+    }
 }

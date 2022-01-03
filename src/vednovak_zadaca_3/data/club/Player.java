@@ -17,8 +17,7 @@ public class Player extends Person {
         return "Klub: " + clubID + ", igrač: " + name + ", rođen: " + born;
     }
 
-    @Override
     public void showChampionshipMemberDetails() {
-        System.out.println(this);
+        System.out.println(name);
     }
 }
