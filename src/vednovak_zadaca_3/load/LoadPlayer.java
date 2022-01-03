@@ -26,7 +26,6 @@ class LoadPlayer extends LoadData {
         return checkPlayerData(object);
     }
 
-    //TODO ubaci vise pozicija
     boolean checkPlayerData(String[] object) {
         if (object.length != 4) {
             if (object.length == 3
@@ -42,7 +41,6 @@ class LoadPlayer extends LoadData {
         }
         if (!checkPlayerClub(object)) return false;
         if (!checkPlayerName(object)) return false;
-        //TODO printData(object) so you dont have to write in method
         if (!checkPlayerPosition(object)) {
             printData(object);
             return false;
@@ -68,7 +66,6 @@ class LoadPlayer extends LoadData {
         return true;
     }
 
-    //TODO popravi!!
     boolean checkPlayerPosition(String[] object) {
         if (object[2].isBlank() || object[2].isEmpty()) {
             System.out.print("ERROR: igrač nema poziciju: ");
@@ -83,6 +80,7 @@ class LoadPlayer extends LoadData {
             System.out.print("ERROR: igrač ima poziciju koja ne postoji: ");
             return false;
         }
+        if (checkIfPlayerContainsMoreThenFivePositions(playerPositions)) return false;
         if (playerPositions.length > 1) {
             for (String position : playerPositions) {
                 if (positions.contains(position)) {
@@ -90,10 +88,7 @@ class LoadPlayer extends LoadData {
                     return false;
                 }
                 int currentPlayerListSize = positions.size();
-
-                //TODO
                 if (checkIfPlayerPositionIsValid(position)) positions.add(position);
-
                 if (currentPlayerListSize == positions.size()) {
                     System.out.print("ERROR: igrač ima poziciju koja ne postoji: ");
                     return false;
@@ -112,6 +107,14 @@ class LoadPlayer extends LoadData {
             if (position.equals(playerPosition.toString())) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    boolean checkIfPlayerContainsMoreThenFivePositions(String[] playerPositions) {
+        if (playerPositions.length > 5) {
+            System.out.print("ERROR: igrač ima previše pozicija ");
+            return true;
         }
         return false;
     }
