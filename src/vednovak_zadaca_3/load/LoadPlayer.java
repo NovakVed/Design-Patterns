@@ -6,7 +6,7 @@ import vednovak_zadaca_3.data.club.position.PlayerPosition;
 import java.util.ArrayList;
 
 class LoadPlayer extends LoadData {
-    ArrayList<String> positions;
+    ArrayList<String> positions = new ArrayList<>();
 
     LoadPlayer() {
     }
@@ -15,6 +15,7 @@ class LoadPlayer extends LoadData {
         String[] objectData = fileData.split(";");
         if (checkObjectData(objectData)) {
             Player player = new Player(objectData[0], objectData[1], positions, objectData[3]);
+            positions.clear();
             if (LoadFileStoredData.players.contains(player))
                 System.out.println("ERROR: igrač već postoji");
             LoadFileStoredData.players.add(player);
@@ -25,7 +26,6 @@ class LoadPlayer extends LoadData {
         return checkPlayerData(object);
     }
 
-    //TODO ubaci vise pozicija
     boolean checkPlayerData(String[] object) {
         if (object.length != 4) {
             if (object.length == 3
@@ -41,7 +41,10 @@ class LoadPlayer extends LoadData {
         }
         if (!checkPlayerClub(object)) return false;
         if (!checkPlayerName(object)) return false;
-        if (!checkPlayerPosition(object)) return false;
+        if (!checkPlayerPosition(object)) {
+            printData(object);
+            return false;
+        }
         return checkPlayerBirthDate(object);
     }
 
@@ -63,11 +66,9 @@ class LoadPlayer extends LoadData {
         return true;
     }
 
-    //TODO popravi!!
     boolean checkPlayerPosition(String[] object) {
         if (object[2].isBlank() || object[2].isEmpty()) {
             System.out.print("ERROR: igrač nema poziciju: ");
-            printData(object);
             return false;
         }
         String[] playerPositions = object[2].split(", ");
@@ -77,31 +78,24 @@ class LoadPlayer extends LoadData {
                 return true;
             }
             System.out.print("ERROR: igrač ima poziciju koja ne postoji: ");
-            printData(object);
             return false;
         }
-        positions = new ArrayList<>();
+        if (checkIfPlayerContainsMoreThenFivePositions(playerPositions)) return false;
         if (playerPositions.length > 1) {
             for (String position : playerPositions) {
                 if (positions.contains(position)) {
                     System.out.print("ERROR: igrač ima dvije iste pozicije: ");
-                    printData(object);
                     return false;
                 }
                 int currentPlayerListSize = positions.size();
-
-                //TODO
                 if (checkIfPlayerPositionIsValid(position)) positions.add(position);
-
                 if (currentPlayerListSize == positions.size()) {
                     System.out.print("ERROR: igrač ima poziciju koja ne postoji: ");
-                    printData(object);
                     return false;
                 }
             }
             if (positions.isEmpty()) {
                 System.out.print("ERROR: igrač ima poziciju koja ne postoji: ");
-                printData(object);
                 return false;
             }
         }
@@ -113,6 +107,14 @@ class LoadPlayer extends LoadData {
             if (position.equals(playerPosition.toString())) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    boolean checkIfPlayerContainsMoreThenFivePositions(String[] playerPositions) {
+        if (playerPositions.length > 5) {
+            System.out.print("ERROR: igrač ima previše pozicija ");
+            return true;
         }
         return false;
     }
