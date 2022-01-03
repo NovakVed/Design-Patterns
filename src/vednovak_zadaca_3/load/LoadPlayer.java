@@ -6,7 +6,7 @@ import vednovak_zadaca_3.data.club.position.PlayerPosition;
 import java.util.ArrayList;
 
 class LoadPlayer extends LoadData {
-    ArrayList<String> positions;
+    ArrayList<String> positions = new ArrayList<>();
 
     LoadPlayer() {
     }
@@ -15,6 +15,7 @@ class LoadPlayer extends LoadData {
         String[] objectData = fileData.split(";");
         if (checkObjectData(objectData)) {
             Player player = new Player(objectData[0], objectData[1], positions, objectData[3]);
+            positions.clear();
             if (LoadFileStoredData.players.contains(player))
                 System.out.println("ERROR: igrač već postoji");
             LoadFileStoredData.players.add(player);
@@ -41,7 +42,11 @@ class LoadPlayer extends LoadData {
         }
         if (!checkPlayerClub(object)) return false;
         if (!checkPlayerName(object)) return false;
-        if (!checkPlayerPosition(object)) return false;
+        //TODO printData(object) so you dont have to write in method
+        if (!checkPlayerPosition(object)) {
+            printData(object);
+            return false;
+        }
         return checkPlayerBirthDate(object);
     }
 
@@ -67,7 +72,6 @@ class LoadPlayer extends LoadData {
     boolean checkPlayerPosition(String[] object) {
         if (object[2].isBlank() || object[2].isEmpty()) {
             System.out.print("ERROR: igrač nema poziciju: ");
-            printData(object);
             return false;
         }
         String[] playerPositions = object[2].split(", ");
@@ -77,15 +81,12 @@ class LoadPlayer extends LoadData {
                 return true;
             }
             System.out.print("ERROR: igrač ima poziciju koja ne postoji: ");
-            printData(object);
             return false;
         }
-        positions = new ArrayList<>();
         if (playerPositions.length > 1) {
             for (String position : playerPositions) {
                 if (positions.contains(position)) {
                     System.out.print("ERROR: igrač ima dvije iste pozicije: ");
-                    printData(object);
                     return false;
                 }
                 int currentPlayerListSize = positions.size();
@@ -95,13 +96,11 @@ class LoadPlayer extends LoadData {
 
                 if (currentPlayerListSize == positions.size()) {
                     System.out.print("ERROR: igrač ima poziciju koja ne postoji: ");
-                    printData(object);
                     return false;
                 }
             }
             if (positions.isEmpty()) {
                 System.out.print("ERROR: igrač ima poziciju koja ne postoji: ");
-                printData(object);
                 return false;
             }
         }
