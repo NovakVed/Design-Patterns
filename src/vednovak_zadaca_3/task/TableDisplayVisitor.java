@@ -1,8 +1,8 @@
-package vednovak_zadaca_1.task;
+package vednovak_zadaca_3.task;
 
-import vednovak_zadaca_1.table.CardTable;
-import vednovak_zadaca_1.table.LeagueTable;
-import vednovak_zadaca_1.table.ScorerTable;
+import vednovak_zadaca_3.table.CardTable;
+import vednovak_zadaca_3.table.LeagueTable;
+import vednovak_zadaca_3.table.ScorerTable;
 
 import java.util.ArrayList;
 import java.util.Comparator;

@@ -1,10 +1,10 @@
-package vednovak_zadaca_1.load;
+package vednovak_zadaca_3.load;
 
-import vednovak_zadaca_1.data.championship.Event;
-import vednovak_zadaca_1.data.championship.GameLineup;
-import vednovak_zadaca_1.data.championship.Match;
-import vednovak_zadaca_1.data.club.Club;
-import vednovak_zadaca_1.data.club.Player;
+import vednovak_zadaca_3.data.championship.Event;
+import vednovak_zadaca_3.data.championship.GameLineup;
+import vednovak_zadaca_3.data.championship.Match;
+import vednovak_zadaca_3.data.club.Club;
+import vednovak_zadaca_3.data.club.Player;
 
 import java.util.List;
 

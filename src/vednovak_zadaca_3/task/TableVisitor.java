@@ -1,4 +1,4 @@
-package vednovak_zadaca_1.task;
+package vednovak_zadaca_3.task;
 
 public interface TableVisitor {
     void visit(GenerateCardTable generateCardTable);

@@ -1,4 +1,4 @@
-package vednovak_zadaca_1.observer;
+package vednovak_zadaca_3.observer;
 
 public class TimeObserver extends ObserverSemaphore {
     public TimeObserver(SubjectSemaphore subjectSemaphore) {

@@ -1,7 +1,7 @@
-package vednovak_zadaca_1;
+package vednovak_zadaca_3;
 
-import vednovak_zadaca_1.data.championship.Match;
-import vednovak_zadaca_1.data.club.Club;
+import vednovak_zadaca_3.data.championship.Match;
+import vednovak_zadaca_3.data.club.Club;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,10 +1,10 @@
-package vednovak_zadaca_1.task;
+package vednovak_zadaca_3.task;
 
-import vednovak_zadaca_1.LoadFactory;
-import vednovak_zadaca_1.StoredData;
-import vednovak_zadaca_1.data.championship.Match;
-import vednovak_zadaca_1.data.championship.MatchDetails;
-import vednovak_zadaca_1.observer.*;
+import vednovak_zadaca_3.LoadFactory;
+import vednovak_zadaca_3.StoredData;
+import vednovak_zadaca_3.data.championship.Match;
+import vednovak_zadaca_3.data.championship.MatchDetails;
+import vednovak_zadaca_3.observer.*;
 
 public class TaskFactory {
     public void getTaskResult(String[] task) {

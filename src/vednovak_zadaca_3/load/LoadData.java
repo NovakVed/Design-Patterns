@@ -1,4 +1,4 @@
-package vednovak_zadaca_1.load;
+package vednovak_zadaca_3.load;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

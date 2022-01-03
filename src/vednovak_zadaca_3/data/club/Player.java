@@ -1,18 +1,20 @@
-package vednovak_zadaca_1.data.club;
+package vednovak_zadaca_3.data.club;
+
+import java.util.List;
 
 public class Player extends Person {
-    public String position;
+    public List<String> positions;
     public String born;
 
-    public Player(String clubID, String name, String position, String born) {
+    public Player(String clubID, String name, List<String> positions, String born) {
         super(clubID, name);
-        this.position = position;
+        this.positions = positions;
         this.born = born;
     }
 
     @Override
     public String toString() {
-        return "Klub: " + clubID + ", igrač: " + name + ", pozicija: " + position + ", rođen: " + born;
+        return "Klub: " + clubID + ", igrač: " + name + ", rođen: " + born;
     }
 
     @Override

@@ -1,6 +1,6 @@
-package vednovak_zadaca_1.load;
+package vednovak_zadaca_3.load;
 
-import vednovak_zadaca_1.data.championship.GameLineup;
+import vednovak_zadaca_3.data.championship.GameLineup;
 
 class LoadGameLineup extends LoadData {
     LoadGameLineup() {

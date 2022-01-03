@@ -1,4 +1,4 @@
-package vednovak_zadaca_1.data.club;
+package vednovak_zadaca_3.data.club;
 
 public class Coach extends Person {
     public Coach(String clubID, String name) {

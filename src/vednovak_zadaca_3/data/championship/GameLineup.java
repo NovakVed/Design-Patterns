@@ -1,4 +1,4 @@
-package vednovak_zadaca_1.data.championship;
+package vednovak_zadaca_3.data.championship;
 
 public class GameLineup implements MatchDetails {
     public int matchID;

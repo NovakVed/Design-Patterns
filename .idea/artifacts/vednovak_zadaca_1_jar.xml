@@ -2,7 +2,7 @@
   <artifact type="jar" build-on-make="true" name="vednovak_zadaca_1:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/vednovak_zadaca_1_jar</output-path>
     <root id="archive" name="vednovak_zadaca_1.jar">
-      <element id="module-output" name="vednovak_zadaca_1" />
+      <element id="module-output" name="vednovak_zadaca_3" />
     </root>
   </artifact>
 </component>

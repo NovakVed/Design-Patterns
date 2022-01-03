@@ -1,4 +1,4 @@
-package vednovak_zadaca_1.data.championship;
+package vednovak_zadaca_3.data.championship;
 
 import java.util.ArrayList;
 import java.util.List;

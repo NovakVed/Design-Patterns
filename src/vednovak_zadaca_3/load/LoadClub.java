@@ -1,6 +1,6 @@
-package vednovak_zadaca_1.load;
+package vednovak_zadaca_3.load;
 
-import vednovak_zadaca_1.data.club.Club;
+import vednovak_zadaca_3.data.club.Club;
 
 class LoadClub extends LoadData {
     LoadClub() {

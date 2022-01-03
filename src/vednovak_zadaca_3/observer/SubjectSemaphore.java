@@ -1,6 +1,6 @@
-package vednovak_zadaca_1.observer;
+package vednovak_zadaca_3.observer;
 
-import vednovak_zadaca_1.data.championship.MatchDetails;
+import vednovak_zadaca_3.data.championship.MatchDetails;
 
 import java.util.ArrayList;
 import java.util.List;

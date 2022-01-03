@@ -1,4 +1,4 @@
-package vednovak_zadaca_1.data.club;
+package vednovak_zadaca_3.data.club;
 
 public abstract class ChampionshipMember {
     public void add(ChampionshipMember member) {

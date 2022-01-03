@@ -1,4 +1,4 @@
-package vednovak_zadaca_1.observer;
+package vednovak_zadaca_3.observer;
 
 public class HomeTeamObserver extends ObserverSemaphore {
     private int goals = 0;

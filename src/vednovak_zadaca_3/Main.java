@@ -1,6 +1,6 @@
-package vednovak_zadaca_1;
+package vednovak_zadaca_3;
 
-import vednovak_zadaca_1.task.TaskFactory;
+import vednovak_zadaca_3.task.TaskFactory;
 
 import java.util.Scanner;
 

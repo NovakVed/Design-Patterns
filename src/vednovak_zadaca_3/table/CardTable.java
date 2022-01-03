@@ -1,4 +1,4 @@
-package vednovak_zadaca_1.table;
+package vednovak_zadaca_3.table;
 
 public class CardTable {
     public String clubName;
