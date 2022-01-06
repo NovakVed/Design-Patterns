@@ -2,8 +2,7 @@ package vednovak_zadaca_3.task;
 
 public class GenerateTableFactory {
     public Table getTaskResult(String[] task) {
-        if (task[0].equals("0")) return null;
-        if (task[0].isEmpty()) return null;
+        if (task[0].equals("0") || task[0].isEmpty()) return null;
         switch (task[0]) {
             case "T":
                 if (ValidateCommand(task)) return null;
@@ -34,22 +33,42 @@ public class GenerateTableFactory {
                 return null;
             default:
                 System.out.println("ERROR: Unesena je nepostojeća komanda");
+                return null;
         }
-        return null;
     }
 
     private Boolean ValidateCommand(String[] task) {
         if (task[0].equals("R")) {
-            if (task.length > 3) {
-                System.out.println("ERROR: Unesena je nepravilna komanda");
-                return true;
+            if (task.length > 3) return true;
+            if (task.length != 1) {
+                if (!CheckIfStringIsCharacter(task[1])) {
+                    System.out.println("ERROR: 2. mjesto nije ID kluba");
+                    return true;
+                }
+                if (task.length != 2) {
+                    if (!CheckIfStringIsNumber(task[2])) {
+                        System.out.println("ERROR: 3. mjesto nije broj kola");
+                        return true;
+                    }
+                }
             }
         } else {
-            if (task.length > 2) {
-                System.out.println("ERROR: Unesena je nepravilna komanda");
-                return true;
+            if (task.length > 2) return true;
+            if (task.length != 1) {
+                if (!CheckIfStringIsNumber(task[1])) {
+                    System.out.println("ERROR: 2. mjesto nije broj kola");
+                    return true;
+                }
             }
         }
         return false;
+    }
+
+    private Boolean CheckIfStringIsCharacter(String string) {
+        return string.matches("^[A-Z]$");
+    }
+
+    private Boolean CheckIfStringIsNumber(String string) {
+        return string.matches("^[0-9]+$");
     }
 }

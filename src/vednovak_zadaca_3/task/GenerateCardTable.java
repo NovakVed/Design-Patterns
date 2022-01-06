@@ -16,15 +16,15 @@ public class GenerateCardTable implements Table {
 
     GenerateCardTable() {
         this.round = StoredData.matches.size();
-        printTable();
+        generateTable();
     }
 
     GenerateCardTable(String round) {
         this.round = Integer.parseInt(round);
-        printTable();
+        generateTable();
     }
 
-    public void printTable() {
+    public void generateTable() {
         for (Match match : StoredData.matches.values()) {
             if (match.round <= round) {
                 String clubName = "";

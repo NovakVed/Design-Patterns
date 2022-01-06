@@ -10,7 +10,7 @@ import vednovak_zadaca_3.load.LoadFileFacade;
 
 import java.util.List;
 
-public class LoadFactory {
+public class LoadDirector {
     public void loadData(String dataType, String fileName) {
         if (dataType == null || dataType.isEmpty()) System.out.println("ERROR: ne postoji klasa");
         if (dataType != null && dataType.matches("-[kiusd]")) {
