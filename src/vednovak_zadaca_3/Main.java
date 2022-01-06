@@ -37,9 +37,9 @@ public class Main {
 
     private static String ProgramManual() {
         return String.format("%n" +
-                "----------------------------------------------------------------%n" +
+                "---------------------------------------------------------------------%n" +
                 "Upišite jednu od sljedećih komanda%n" +
-                "----------------------------------------------------------------%n" +
+                "---------------------------------------------------------------------%n" +
                 "Pregled ljestvice kola:            T [kolo]%n" +
                 "Pregled ljestvica strijelaca:      S [kolo]%n" +
                 "Pregled ljestvice kartona:         K [kolo]%n" +
@@ -47,8 +47,9 @@ public class Main {
                 "Dodavanje podataka za utakmice:    NU [datoteka]%n" +
                 "Dodavanje podataka za sastave:     NS [datoteka]%n" +
                 "Dodavanje podataka za događaje:    ND [datoteka]%n" +
+                "Ispis utakmica za utakmicu:        D [kolo] [klub1] [klub2] [sekundi]%n" +
                 "Zatvaranje programa:               0%n" +
-                "----------------------------------------------------------------%n" +
+                "---------------------------------------------------------------------%n" +
                 "Vaša komanda: ");
     }
 }
