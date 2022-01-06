@@ -15,15 +15,15 @@ class GenerateLeagueTable implements Table {
 
     GenerateLeagueTable() {
         this.round = StoredData.matches.size();
-        printTable();
+        generateTable();
     }
 
     GenerateLeagueTable(String round) {
         this.round = Integer.parseInt(round);
-        printTable();
+        generateTable();
     }
 
-    public void printTable() {
+    public void generateTable() {
         for (Match match : StoredData.matches.values()) {
             if (match.round <= round) {
                 String teamWon = "";

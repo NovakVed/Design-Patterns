@@ -17,16 +17,16 @@ class GenerateMatchHistory implements Table {
     GenerateMatchHistory(String club) {
         this.club = club;
         round = StoredData.matches.size();
-        printTable();
+        generateTable();
     }
 
     GenerateMatchHistory(String club, String round) {
         this.club = club;
         this.round = Integer.parseInt(round);
-        printTable();
+        generateTable();
     }
 
-    public void printTable() {
+    public void generateTable() {
         for (Match match : StoredData.matches.values()) {
             if (match.homeTeam.equals(club) || match.awayTeam.equals(club)) {
                 if (match.round <= round) {

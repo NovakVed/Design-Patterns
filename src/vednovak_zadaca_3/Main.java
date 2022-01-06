@@ -1,7 +1,5 @@
 package vednovak_zadaca_3;
 
-import vednovak_zadaca_3.task.TaskFactory;
-
 import java.util.Scanner;
 
 public class Main {
@@ -11,13 +9,13 @@ public class Main {
 
         Scanner scan;
         String userInput;
-        TaskFactory taskFactory = new TaskFactory();
+        TaskDirector taskDirector = new TaskDirector();
         do {
             System.out.println(ProgramManual());
             scan = new Scanner(System.in);
             userInput = scan.nextLine();
             String[] userInputValues = userInput.split(" ");
-            taskFactory.getTaskResult(userInputValues);
+            taskDirector.directTask(userInputValues);
         } while (!userInput.equals("0"));
         scan.close();
         System.out.println("Program je završio sa svojim radom");
@@ -26,12 +24,12 @@ public class Main {
 
     private static void LoadData(String[] args) {
         StoredData.getInstance();
-        LoadFactory loadFactory = new LoadFactory();
+        LoadDirector loadDirector = new LoadDirector();
 
         if (args.length % 2 == 0) {
             for (int i = 0; i < args.length; i += 2) {
                 if (!args[i + 1].matches("^-"))
-                    loadFactory.loadData(args[i], args[i + 1]);
+                    loadDirector.loadData(args[i], args[i + 1]);
                 else System.out.println("ERROR: nepravilno uneseni argumenti");
             }
         } else System.out.println("ERROR: nepravilno uneseni argumenti");
