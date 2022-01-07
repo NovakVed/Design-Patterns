@@ -1,9 +1,6 @@
 package vednovak_zadaca_3.observer;
 
 public class AwayTeamObserver extends ObserverSemaphore {
-    private int goals = 0;
-    private String scorer = "";
-
     public AwayTeamObserver(SubjectSemaphore subjectSemaphore) {
         this.subjectSemaphore = subjectSemaphore;
         this.subjectSemaphore.attach(this);
@@ -11,40 +8,37 @@ public class AwayTeamObserver extends ObserverSemaphore {
 
     @Override
     public void update() {
-        if (scorer != null)
-            System.out.printf("%45s %15d%n%45s %15s%n",
-                    "Gol GOSTI: ", goals,
-                    "Strijelci: ", scorer);
-        else
-            System.out.printf("%45s %15d%n",
-                    "Gol GOSTI: ", 0);
         if (!subjectSemaphore.getHome()) {
-            if (subjectSemaphore.getEvent().getType().equals("1")
-                    || subjectSemaphore.getEvent().getType().equals("2")) {
-                goals += 1;
-                scorer += subjectSemaphore.getEvent().getPlayer() + ", ";
-                System.out.printf("%n%45s %15s%n%45s %15s%n",
-                        "Strijelac: ", subjectSemaphore.getEvent().getPlayer(),
-                        "Minuta: ", subjectSemaphore.getEvent().getMinutes());
+            if (subjectSemaphore.getMatchDetails().getType().equals("1")
+                    || subjectSemaphore.getMatchDetails().getType().equals("2")) {
+                subjectSemaphore.setAwayGoals(1);
+                subjectSemaphore.setAwayScorer(subjectSemaphore.getMatchDetails().getPlayer());
+                System.out.printf("%40s'%s%s%n",
+                        subjectSemaphore.getMatchDetails().getMinutes(), " Strijelac: ",
+                        subjectSemaphore.getMatchDetails().getPlayer());
             }
-            if (subjectSemaphore.getEvent().getType().equals("10")) {
-                System.out.printf("%45s%n%45s %15s%n%45s %15s%n",
-                        "Događaj: Žuti karton",
-                        "Igrač: ", subjectSemaphore.getEvent().getPlayer(),
-                        "Minuta: ", subjectSemaphore.getEvent().getMinutes());
+            if (subjectSemaphore.getMatchDetails().getType().equals("3")) {
+                subjectSemaphore.setHomeGoals(1);
+                subjectSemaphore.setHomeScorer(subjectSemaphore.getMatchDetails().getPlayer());
+                System.out.printf("%40s'%s%s%n",
+                        subjectSemaphore.getMatchDetails().getMinutes(), " Autogol: ",
+                        subjectSemaphore.getMatchDetails().getPlayer());
             }
-            if (subjectSemaphore.getEvent().getType().equals("11")) {
-                System.out.printf("%45s%n%45s %15s%n%45s %15s%n",
-                        "Događaj: Crveni karton",
-                        "Igrač: ", subjectSemaphore.getEvent().getPlayer(),
-                        "Minuta: ", subjectSemaphore.getEvent().getMinutes());
+            if (subjectSemaphore.getMatchDetails().getType().equals("10")) {
+                System.out.printf("%40s'%s%s%n",
+                        subjectSemaphore.getMatchDetails().getMinutes(), " Žuti karton: ",
+                        subjectSemaphore.getMatchDetails().getPlayer());
             }
-            if (subjectSemaphore.getEvent().getType().equals("20")) {
-                System.out.printf("%45s%n%45s %15s%n%45s %15s%n%45s %15s%n",
-                        "Događaj: Zamijena igrača",
-                        "Igrač: ", subjectSemaphore.getEvent().getPlayer(),
-                        "Igrač: ", subjectSemaphore.getEvent().getSubstitute(),
-                        "Minuta: ", subjectSemaphore.getEvent().getMinutes());
+            if (subjectSemaphore.getMatchDetails().getType().equals("11")) {
+                System.out.printf("%40s'%s%s%n",
+                        subjectSemaphore.getMatchDetails().getMinutes(), " Crveni karton: ",
+                        subjectSemaphore.getMatchDetails().getPlayer());
+            }
+            if (subjectSemaphore.getMatchDetails().getType().equals("20")) {
+                System.out.printf("%40s'%s%n%40s%s%n%40s%s%n",
+                        subjectSemaphore.getMatchDetails().getMinutes(), " Zamijena igrača",
+                        "Izlazi: ", subjectSemaphore.getMatchDetails().getPlayer(),
+                        "Ulazi: ", subjectSemaphore.getMatchDetails().getSubstitute());
             }
         }
     }

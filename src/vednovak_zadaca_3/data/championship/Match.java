@@ -3,15 +3,14 @@ package vednovak_zadaca_3.data.championship;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Match implements MatchDetails {
+public class Match extends MatchDetails {
     public int matchID;
     public int round;
     public String homeTeam;
     public String awayTeam;
     public String start;
 
-    public List<MatchDetails> matchEvents = new ArrayList<>();
-    public List<MatchDetails> matchGameLineups = new ArrayList<>();
+    public List<MatchDetails> matchDetails = new ArrayList<>();
 
     public Match(int matchID, int round, String homeTeam, String awayTeam, String start) {
         this.matchID = matchID;
@@ -21,30 +20,52 @@ public class Match implements MatchDetails {
         this.start = start;
     }
 
-    public void addMatchEvents(MatchDetails matchDetails) {
-        this.matchEvents.add(matchDetails);
+    public void add(MatchDetails matchDetails) {
+        this.matchDetails.add(matchDetails);
     }
 
-    public void removeMatchEvents(MatchDetails matchDetails) {
-        this.matchEvents.remove(matchDetails);
+    public List<MatchDetails> getMatchEvents() {
+        List<MatchDetails> events = new ArrayList<>();
+        for (MatchDetails matchDetails : matchDetails) {
+            try {
+                if (!matchDetails.getMinutes().isEmpty()) events.add(matchDetails);
+            } catch (UnsupportedOperationException ignored) {
+
+            }
+        }
+        return events;
     }
 
-    public void clearMatchEvents() {
-        System.out.println("Kolo: " + round + ", briše sva kola");
-        this.matchEvents.clear();
+    public List<MatchDetails> getMatchGamePlan() {
+        List<MatchDetails> gameLineups = new ArrayList<>();
+        for (MatchDetails matchDetails : matchDetails) {
+            try {
+                if (!matchDetails.getPlayerPosition().isEmpty()) gameLineups.add(matchDetails);
+            } catch (UnsupportedOperationException ignored) {
+
+            }
+        }
+        return gameLineups;
     }
 
-    public void addMatchGameLineups(MatchDetails matchDetails) {
-        this.matchGameLineups.add(matchDetails);
+    public int getMatchID() {
+        return matchID;
     }
 
-    public void removeMatchGameLineups(MatchDetails matchDetails) {
-        this.matchGameLineups.remove(matchDetails);
+    public int getRound() {
+        return round;
     }
 
-    public void clearMatchGameLineups() {
-        System.out.println("Kolo: " + round + ", briše sva kola");
-        this.matchGameLineups.clear();
+    public String getHomeTeam() {
+        return homeTeam;
+    }
+
+    public String getAwayTeam() {
+        return awayTeam;
+    }
+
+    public String getMatchStart() {
+        return start;
     }
 
     @Override
@@ -53,33 +74,7 @@ public class Match implements MatchDetails {
                 + " početak: " + start;
     }
 
-    @Override
     public void showMatchDetails() {
         System.out.println(this);
-    }
-
-    @Override
-    public String getClubID() {
-        return null;
-    }
-
-    @Override
-    public String getType() {
-        return null;
-    }
-
-    @Override
-    public String getPlayer() {
-        return null;
-    }
-
-    @Override
-    public String getMinutes() {
-        return null;
-    }
-
-    @Override
-    public String getSubstitute() {
-        return null;
     }
 }

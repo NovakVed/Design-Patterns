@@ -30,7 +30,7 @@ class GenerateGoalTable implements Table {
                 String playerName = "";
                 String playerClub = "";
 
-                for (MatchDetails matchDetails : match.matchEvents) {
+                for (MatchDetails matchDetails : match.getMatchEvents()) {
                     if (matchDetails.getClubID() != null) {
                         if (matchDetails.getType().equals("1") || matchDetails.getType().equals("2")) {
                             scoredGoals += 1;

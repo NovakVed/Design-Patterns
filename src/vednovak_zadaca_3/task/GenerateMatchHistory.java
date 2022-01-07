@@ -33,10 +33,18 @@ class GenerateMatchHistory implements Table {
                     int goalsFor = 0;
                     int goalsAgainst = 0;
 
-                    for (MatchDetails matchDetails : match.matchEvents) {
+                    for (MatchDetails matchDetails : match.getMatchEvents()) {
                         if (matchDetails.getClubID() != null) {
-                            if (matchDetails.getClubID().equals(match.homeTeam)) goalsFor += 1;
-                            if (matchDetails.getClubID().equals(match.awayTeam)) goalsAgainst += 1;
+                            if (matchDetails.getClubID().equals(match.homeTeam)) {
+                                if (matchDetails.getType().equals("1")) goalsFor += 1;
+                                if (matchDetails.getType().equals("2")) goalsFor += 1;
+                                if (matchDetails.getType().equals("3")) goalsAgainst += 1;
+                            }
+                            if (matchDetails.getClubID().equals(match.awayTeam)) {
+                                if (matchDetails.getType().equals("1")) goalsAgainst += 1;
+                                if (matchDetails.getType().equals("2")) goalsAgainst += 1;
+                                if (matchDetails.getType().equals("3")) goalsFor += 1;
+                            }
                         }
                     }
                     storeMatchHistoryList(getClubName(match.homeTeam), getClubName(match.awayTeam),

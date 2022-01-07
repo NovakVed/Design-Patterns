@@ -32,7 +32,7 @@ public class GenerateCardTable implements Table {
                 int secondYellowCards = 0;
                 int redCards = 0;
 
-                for (MatchDetails matchDetails : match.matchEvents) {
+                for (MatchDetails matchDetails : match.getMatchEvents()) {
                     if (matchDetails.getClubID() != null) {
                         if (matchDetails.getType().equals("10")) {
                             if (doubleYellows.containsKey(matchDetails.getPlayer()))

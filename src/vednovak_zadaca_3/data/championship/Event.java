@@ -1,6 +1,9 @@
 package vednovak_zadaca_3.data.championship;
 
-public class Event implements MatchDetails {
+import vednovak_zadaca_3.StoredData;
+import vednovak_zadaca_3.data.club.Club;
+
+public class Event extends MatchDetails {
     //required
     private final int matchID;
     private final String minutes;
@@ -13,10 +16,10 @@ public class Event implements MatchDetails {
 
     private Event(EventBuilder builder) {
         this.matchID = builder.matchID;
-        this.minutes = builder.minutes;
-        this.type = builder.type;
         this.clubID = builder.clubID;
+        this.type = builder.type;
         this.player = builder.player;
+        this.minutes = builder.minutes;
         this.substitute = builder.substitute;
     }
 
@@ -24,29 +27,31 @@ public class Event implements MatchDetails {
         return matchID;
     }
 
-    @Override
     public String getMinutes() {
         return minutes;
     }
 
-    @Override
     public String getType() {
         return type;
     }
 
-    @Override
     public String getClubID() {
         return clubID;
     }
 
-    @Override
     public String getPlayer() {
         return player;
     }
 
-    @Override
     public String getSubstitute() {
         return substitute;
+    }
+
+    public String getTeamFullName() {
+        for (Club club: StoredData.clubs.values()) {
+            if (club.clubID.equals(getClubID())) return club.getClubName();
+        }
+        return "";
     }
 
     @Override
@@ -55,7 +60,6 @@ public class Event implements MatchDetails {
                 + " Klub: " + clubID + " Igrac: " + player + " Zamjena: " + substitute;
     }
 
-    @Override
     public void showMatchDetails() {
         System.out.println(this);
     }

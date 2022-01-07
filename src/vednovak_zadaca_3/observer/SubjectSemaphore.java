@@ -7,21 +7,57 @@ import java.util.List;
 
 public class SubjectSemaphore {
     private final List<ObserverSemaphore> observerSemaphores = new ArrayList<>();
-    private MatchDetails event;
-    private Boolean home;
+    private MatchDetails matchDetails;
+    private boolean home;
+    private int homeGoals = 0;
+    private int awayGoals = 0;
+    private String homeScorer = "";
+    private String awayScorer = "";
 
-    public MatchDetails getEvent() {
-        return event;
+    public MatchDetails getMatchDetails() {
+        return matchDetails;
     }
 
-    public boolean getHome() {
+    public void setMatchDetails(MatchDetails matchDetails, boolean home) {
+        this.matchDetails = matchDetails;
+        this.home = home;
+        notifyAllObservers();
+    }
+
+    public Boolean getHome() {
         return home;
     }
 
-    public void setEvent(Boolean home, MatchDetails event) {
-        this.event = event;
-        this.home = home;
-        notifyAllObservers();
+    public int getHomeGoals() {
+        return homeGoals;
+    }
+
+    public String getHomeScorer() {
+        return homeScorer;
+    }
+
+    public void setHomeScorer(String homeScorer) {
+        this.homeScorer += matchDetails.getMinutes() + "': " + homeScorer + ", ";
+    }
+
+    public void setHomeGoals(int homeGoals) {
+        this.homeGoals += homeGoals;
+    }
+
+    public int getAwayGoals() {
+        return awayGoals;
+    }
+
+    public String getAwayScorer() {
+        return awayScorer;
+    }
+
+    public void setAwayScorer(String awayScorer) {
+        this.awayScorer += matchDetails.getMinutes() + "': " + awayScorer + ", ";
+    }
+
+    public void setAwayGoals(int awayGoals) {
+        this.awayGoals += awayGoals;
     }
 
     public void attach(ObserverSemaphore observerSemaphore) {

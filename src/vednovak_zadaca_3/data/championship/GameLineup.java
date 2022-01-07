@@ -1,6 +1,6 @@
 package vednovak_zadaca_3.data.championship;
 
-public class GameLineup implements MatchDetails {
+public class GameLineup extends MatchDetails {
     public int matchID;
     public String clubID;
     public String type;
@@ -21,33 +21,27 @@ public class GameLineup implements MatchDetails {
                 + " pozicija: " + position;
     }
 
-    @Override
     public void showMatchDetails() {
         System.out.println(this);
     }
 
-    @Override
+    public int getMatchID() {
+        return matchID;
+    }
+
     public String getClubID() {
         return clubID;
     }
 
-    @Override
     public String getType() {
         return type;
     }
 
-    @Override
     public String getPlayer() {
         return player;
     }
 
-    @Override
-    public String getMinutes() {
-        return null;
-    }
-
-    @Override
-    public String getSubstitute() {
-        return null;
+    public String getPlayerPosition() {
+        return position;
     }
 }

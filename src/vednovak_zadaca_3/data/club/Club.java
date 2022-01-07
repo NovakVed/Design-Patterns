@@ -20,15 +20,6 @@ public class Club extends ChampionshipMember {
         this.championshipMembers.add(member);
     }
 
-    public void remove(ChampionshipMember member) {
-        this.championshipMembers.remove(member);
-    }
-
-    public void clear() {
-        System.out.println("Klub: " + name + ", briše sve članove kluba");
-        this.championshipMembers.clear();
-    }
-
     public String getClubID() {
         return this.clubID;
     }
@@ -44,10 +35,6 @@ public class Club extends ChampionshipMember {
     @Override
     public String toString() {
         return "Klub: " + clubID + " naziv: " + name + " trener: " + coach;
-    }
-
-    public ChampionshipMember getChampionshipMember(int componentID) {
-        return championshipMembers.get(componentID);
     }
 
     public void showChampionshipMemberDetails() {

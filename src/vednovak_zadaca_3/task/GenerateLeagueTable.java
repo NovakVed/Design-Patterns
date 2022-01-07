@@ -33,7 +33,7 @@ class GenerateLeagueTable implements Table {
 
                 int scoredGoalsHomeTeam = 0;
                 int scoredGoalsAwayTeam = 0;
-                for (MatchDetails matchDetails : match.matchEvents) {
+                for (MatchDetails matchDetails : match.getMatchEvents()) {
                     if (matchDetails.getClubID() != null) {
                         if (matchDetails.getClubID().equals(match.homeTeam)) {
                             if (matchDetails.getType().equals("1")) scoredGoalsHomeTeam += 1;
@@ -95,7 +95,8 @@ class GenerateLeagueTable implements Table {
         }
     }
 
-    private void wonGame(int matchesPlayed, String wonTeam, String coach, int scoredGoalsWonTeam, int scoredGoalsLostTeam) {
+    private void wonGame(int matchesPlayed, String wonTeam, String coach, int scoredGoalsWonTeam,
+                         int scoredGoalsLostTeam) {
         if (!wonTeam.isEmpty() && !wonTeam.isBlank()) {
             if (!leagueLeaderboards.containsKey(wonTeam)) {
                 LeagueTable leagueTable = new LeagueTable.Builder()
@@ -123,7 +124,8 @@ class GenerateLeagueTable implements Table {
         }
     }
 
-    private void lostGame(int matchesPlayed, String lostTeam, String coach, int scoredGoalsLostTeam, int scoredGoalsWonTeam) {
+    private void lostGame(int matchesPlayed, String lostTeam, String coach, int scoredGoalsLostTeam,
+                          int scoredGoalsWonTeam) {
         if (!lostTeam.isEmpty() && !lostTeam.isBlank()) {
             if (!leagueLeaderboards.containsKey(lostTeam)) {
                 LeagueTable leagueTable = new LeagueTable.Builder()

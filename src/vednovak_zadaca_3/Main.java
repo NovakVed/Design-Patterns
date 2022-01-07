@@ -18,7 +18,7 @@ public class Main {
             taskDirector.directTask(userInputValues);
         } while (!userInput.equals("0"));
         scan.close();
-        System.out.println("Program je završio sa svojim radom");
+        System.out.println("Program je završio");
         System.exit(0);
     }
 
