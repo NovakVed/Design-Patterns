@@ -57,7 +57,7 @@ public class LoadDirector {
     public void storeGameLineupsDataToMatchComposite(List<GameLineup> gameLineups) {
         for (GameLineup gameLineup : gameLineups) {
             if (StoredData.matches.containsKey(gameLineup.matchID)) {
-                StoredData.matches.get(gameLineup.matchID).add(gameLineup);
+                StoredData.matches.get(gameLineup.matchID).addGameLineups(gameLineup);
             }
         }
     }
@@ -65,7 +65,7 @@ public class LoadDirector {
     public void storeEventDataToMatchComposite(List<Event> events) {
         for (Event event : events) {
             if (StoredData.matches.containsKey(event.getMatchID())) {
-                StoredData.matches.get(event.getMatchID()).add(event);
+                StoredData.matches.get(event.getMatchID()).addEvents(event);
             }
         }
     }

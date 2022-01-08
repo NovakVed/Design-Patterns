@@ -10,7 +10,8 @@ public class Match extends MatchDetails {
     public String awayTeam;
     public String start;
 
-    public List<MatchDetails> matchDetails = new ArrayList<>();
+    public List<MatchDetails> matchGameLineups = new ArrayList<>();
+    public List<MatchDetails> matchEvents = new ArrayList<>();
 
     public Match(int matchID, int round, String homeTeam, String awayTeam, String start) {
         this.matchID = matchID;
@@ -20,32 +21,36 @@ public class Match extends MatchDetails {
         this.start = start;
     }
 
-    public void add(MatchDetails matchDetails) {
-        this.matchDetails.add(matchDetails);
+    public void addGameLineups(MatchDetails matchDetails) {
+        this.matchGameLineups.add(matchDetails);
+    }
+
+    public void removeGameLineupObject(int index) {
+        this.matchGameLineups.remove(index);
+    }
+
+    public void clearGameLineups() {
+        this.matchGameLineups.clear();
+    }
+
+    public void addEvents(MatchDetails matchDetails) {
+        this.matchEvents.add(matchDetails);
+    }
+
+    public void removeEventsObject(int index) {
+        this.matchEvents.remove(index);
+    }
+
+    public void clearEvents() {
+        this.matchEvents.clear();
     }
 
     public List<MatchDetails> getMatchEvents() {
-        List<MatchDetails> events = new ArrayList<>();
-        for (MatchDetails matchDetails : matchDetails) {
-            try {
-                if (!matchDetails.getMinutes().isEmpty()) events.add(matchDetails);
-            } catch (UnsupportedOperationException ignored) {
-
-            }
-        }
-        return events;
+        return matchEvents;
     }
 
     public List<MatchDetails> getMatchGamePlan() {
-        List<MatchDetails> gameLineups = new ArrayList<>();
-        for (MatchDetails matchDetails : matchDetails) {
-            try {
-                if (!matchDetails.getPlayerPosition().isEmpty()) gameLineups.add(matchDetails);
-            } catch (UnsupportedOperationException ignored) {
-
-            }
-        }
-        return gameLineups;
+        return matchGameLineups;
     }
 
     public int getMatchID() {
