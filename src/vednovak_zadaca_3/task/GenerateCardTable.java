@@ -35,11 +35,11 @@ public class GenerateCardTable implements Table {
                 for (MatchDetails matchDetails : match.getMatchEvents()) {
                     if (matchDetails.getClubID() != null) {
                         if (matchDetails.getType().equals("10")) {
-                            if (doubleYellows.containsKey(matchDetails.getPlayer()))
+                            if (doubleYellows.containsKey(matchDetails.getPlayerName()))
                                 secondYellowCards += 1;
                             else {
                                 firstYellowCards += 1;
-                                doubleYellows.put(matchDetails.getPlayer(), match.round);
+                                doubleYellows.put(matchDetails.getPlayerName(), match.round);
                             }
                         }
                         if (matchDetails.getType().equals("11")) {

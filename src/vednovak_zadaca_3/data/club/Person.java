@@ -9,10 +9,6 @@ public abstract class Person extends ChampionshipMember {
         this.name = name;
     }
 
-    public String getPersonClubID() {
-        return this.clubID;
-    }
-
     public String getPersonName() {
         return this.name;
     }

@@ -1,5 +1,7 @@
 package vednovak_zadaca_3;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -27,11 +29,8 @@ public class Main {
         LoadDirector loadDirector = new LoadDirector();
 
         if (args.length % 2 == 0) {
-            for (int i = 0; i < args.length; i += 2) {
-                if (!args[i + 1].matches("^-"))
-                    loadDirector.loadData(args[i], args[i + 1]);
-                else System.out.println("ERROR: nepravilno uneseni argumenti");
-            }
+            ArrayList<String> fileNames = new ArrayList<>(Arrays.asList(args));
+            loadDirector.directorLoadData(fileNames);
         } else System.out.println("ERROR: nepravilno uneseni argumenti");
     }
 
@@ -48,6 +47,7 @@ public class Main {
                 "Dodavanje podataka za sastave:     NS [datoteka]%n" +
                 "Dodavanje podataka za događaje:    ND [datoteka]%n" +
                 "Ispis utakmica za utakmicu:        D [kolo] [klub1] [klub2] [sekundi]%n" +
+                "Ispis sastava utakmica:            SU [kolo] [klub1] [klub2]%n" +
                 "Zatvaranje programa:               0%n" +
                 "---------------------------------------------------------------------%n" +
                 "Vaša komanda: ");

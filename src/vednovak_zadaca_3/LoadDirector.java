@@ -8,9 +8,44 @@ import vednovak_zadaca_3.data.club.Coach;
 import vednovak_zadaca_3.data.club.Player;
 import vednovak_zadaca_3.load.LoadFileFacade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoadDirector {
+    public void directorLoadData(ArrayList<String> fileNames) {
+        int index;
+        if (fileNames.contains("-k")) {
+            index = fileNames.indexOf("-k");
+            loadData(fileNames.get(index), fileNames.get(index+1));
+            fileNames.remove(index+1);
+            fileNames.remove(index);
+        }
+        if (fileNames.contains("-i")) {
+            index = fileNames.indexOf("-i");
+            loadData(fileNames.get(index), fileNames.get(index + 1));
+            fileNames.remove(index + 1);
+            fileNames.remove(index);
+        }
+        if (fileNames.contains("-u")) {
+            index = fileNames.indexOf("-u");
+            loadData(fileNames.get(index), fileNames.get(index + 1));
+            fileNames.remove(index + 1);
+            fileNames.remove(index);
+        }
+        if (fileNames.contains("-s")) {
+            index = fileNames.indexOf("-s");
+            loadData(fileNames.get(index), fileNames.get(index + 1));
+            fileNames.remove(index + 1);
+            fileNames.remove(index);
+        }
+        if (fileNames.contains("-d")) {
+            index = fileNames.indexOf("-d");
+            loadData(fileNames.get(index), fileNames.get(index + 1));
+            fileNames.remove(index + 1);
+            fileNames.remove(index);
+        }
+    }
+
     public void loadData(String dataType, String fileName) {
         if (dataType == null || dataType.isEmpty()) System.out.println("ERROR: ne postoji klasa");
         if (dataType != null && dataType.matches("-[kiusd]")) {

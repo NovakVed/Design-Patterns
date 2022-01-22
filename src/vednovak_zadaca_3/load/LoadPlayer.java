@@ -6,16 +6,16 @@ import vednovak_zadaca_3.data.club.position.PlayerPosition;
 import java.util.ArrayList;
 
 class LoadPlayer extends LoadData {
-    ArrayList<String> positions = new ArrayList<>();
+    ArrayList<String> positions;
 
     LoadPlayer() {
     }
 
     void storeFileData(String fileData) {
         String[] objectData = fileData.split(";");
+        positions = new ArrayList<>();
         if (checkObjectData(objectData)) {
             Player player = new Player(objectData[0], objectData[1], positions, objectData[3]);
-            positions.clear();
             if (LoadFileStoredData.players.contains(player))
                 System.out.println("ERROR: igrač već postoji");
             LoadFileStoredData.players.add(player);

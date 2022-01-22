@@ -1,5 +1,10 @@
 package vednovak_zadaca_3.data.championship;
 
+import vednovak_zadaca_3.StoredData;
+import vednovak_zadaca_3.data.club.ChampionshipMember;
+import vednovak_zadaca_3.data.club.Club;
+import vednovak_zadaca_3.data.club.Player;
+
 public class GameLineup extends MatchDetails {
     public int matchID;
     public String clubID;
@@ -37,8 +42,17 @@ public class GameLineup extends MatchDetails {
         return type;
     }
 
-    public String getPlayer() {
+    public String getPlayerName() {
         return player;
+    }
+
+    public Player getPlayer() {
+        for (Club club : StoredData.clubs.values()) {
+            for (ChampionshipMember member : club.championshipMembers) {
+                if (member.getPersonName().equals(this.player)) return member.getPlayer();
+            }
+        }
+        return null;
     }
 
     public String getPlayerPosition() {

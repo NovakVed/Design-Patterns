@@ -34,7 +34,7 @@ class GenerateGoalTable implements Table {
                     if (matchDetails.getClubID() != null) {
                         if (matchDetails.getType().equals("1") || matchDetails.getType().equals("2")) {
                             scoredGoals += 1;
-                            playerName = matchDetails.getPlayer();
+                            playerName = matchDetails.getPlayerName();
                         }
                     }
                     for (Club club : StoredData.clubs.values()) {

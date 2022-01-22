@@ -1,10 +1,13 @@
 package vednovak_zadaca_3;
 
 import vednovak_zadaca_3.data.championship.MatchDetails;
+import vednovak_zadaca_3.data.club.state.PlayerInGame;
+import vednovak_zadaca_3.data.club.state.PlayerInSubstitution;
 import vednovak_zadaca_3.observer.AwayTeamObserver;
 import vednovak_zadaca_3.observer.HomeTeamObserver;
 import vednovak_zadaca_3.observer.SubjectSemaphore;
 import vednovak_zadaca_3.observer.TimeObserver;
+import vednovak_zadaca_3.task.GenerateGamePlan;
 import vednovak_zadaca_3.task.GenerateTableFactory;
 import vednovak_zadaca_3.task.TableDisplayVisitor;
 
@@ -52,6 +55,7 @@ public class TaskDirector {
                         new HomeTeamObserver(subjectSemaphore);
                         new AwayTeamObserver(subjectSemaphore);
 
+                        loadGamePlan(matchDetails);
                         for (MatchDetails details : matchDetails.getMatchEvents()) {
                             boolean home = false;
                             if (!details.getType().equals("0") && !details.getType().equals("99"))
@@ -65,6 +69,32 @@ public class TaskDirector {
                         }
                     }
                 }
+            }
+            if (task[0].equals("SU")) {
+                if (!task[1].isEmpty() && !task[2].isEmpty() && !task[3].isEmpty()) {
+                    MatchDetails matchDetails = null;
+                    for (MatchDetails m : StoredData.matches.values()) {
+                        if (m.getRound() == Integer.parseInt(task[1])
+                                && m.getHomeTeam().equals(task[2]) && m.getAwayTeam().equals(task[3])) {
+                            matchDetails = m;
+                        }
+                    }
+                    loadGamePlan(matchDetails);
+                    GenerateGamePlan generateGamePlan = new GenerateGamePlan(matchDetails);
+                }
+            }
+        }
+    }
+
+    private void loadGamePlan(MatchDetails matchDetails) {
+        for (MatchDetails details: matchDetails.getMatchGamePlan()) {
+            if (details.getType().equals("S")) {
+                PlayerInGame playerInGame = new PlayerInGame();
+                playerInGame.doAction(details.getPlayer());
+            }
+            if (details.getType().equals("P")) {
+                PlayerInSubstitution playerInSubstitution = new PlayerInSubstitution();
+                playerInSubstitution.doAction(details.getPlayer());
             }
         }
     }

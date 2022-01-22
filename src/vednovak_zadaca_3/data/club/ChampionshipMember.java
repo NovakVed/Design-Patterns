@@ -16,4 +16,8 @@ public abstract class ChampionshipMember {
     public String getPersonName() {
         throw new UnsupportedOperationException();
     }
+
+    public Player getPlayer() {
+        throw new UnsupportedOperationException();
+    }
 }

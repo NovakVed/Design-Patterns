@@ -1,7 +1,9 @@
 package vednovak_zadaca_3.data.championship;
 
 import vednovak_zadaca_3.StoredData;
+import vednovak_zadaca_3.data.club.ChampionshipMember;
 import vednovak_zadaca_3.data.club.Club;
+import vednovak_zadaca_3.data.club.Player;
 
 public class Event extends MatchDetails {
     //required
@@ -39,16 +41,34 @@ public class Event extends MatchDetails {
         return clubID;
     }
 
-    public String getPlayer() {
+    public String getPlayerName() {
         return player;
     }
 
-    public String getSubstitute() {
+    public Player getPlayer() {
+        for (Club club : StoredData.clubs.values()) {
+            for (ChampionshipMember member : club.championshipMembers) {
+                if (member.getPersonName().equals(this.player)) return member.getPlayer();
+            }
+        }
+        return null;
+    }
+
+    public String getSubstituteName() {
         return substitute;
     }
 
+    public Player getSubstitute() {
+        for (Club club : StoredData.clubs.values()) {
+            for (ChampionshipMember member : club.championshipMembers) {
+                if (member.getPersonName().equals(this.substitute)) return member.getPlayer();
+            }
+        }
+        return null;
+    }
+
     public String getTeamFullName() {
-        for (Club club: StoredData.clubs.values()) {
+        for (Club club : StoredData.clubs.values()) {
             if (club.clubID.equals(getClubID())) return club.getClubName();
         }
         return "";

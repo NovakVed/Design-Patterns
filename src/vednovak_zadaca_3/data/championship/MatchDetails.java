@@ -1,6 +1,7 @@
 package vednovak_zadaca_3.data.championship;
 
 import vednovak_zadaca_3.data.club.ChampionshipMember;
+import vednovak_zadaca_3.data.club.Player;
 
 import java.util.List;
 
@@ -57,7 +58,11 @@ public abstract class MatchDetails {
         throw new UnsupportedOperationException();
     }
 
-    public String getPlayer() {
+    public String getPlayerName() {
+        throw new UnsupportedOperationException();
+    }
+
+    public Player getPlayer() {
         throw new UnsupportedOperationException();
     }
 
@@ -69,7 +74,11 @@ public abstract class MatchDetails {
         throw new UnsupportedOperationException();
     }
 
-    public String getSubstitute() {
+    public String getSubstituteName() {
+        throw new UnsupportedOperationException();
+    }
+
+    public Player getSubstitute() {
         throw new UnsupportedOperationException();
     }
 }
